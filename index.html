@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Sector Vault — Home (anteprima)</title>
+<style>
+  :root{
+    --sfondo:#080b11;
+    --card:#121826;
+    --card-2:#161d2c;
+    --tile:#141a27;
+    --lime:#c8f500;
+    --lime-scuro:#b6df00;
+    --testo:#ffffff;
+    --muto:#8b93a6;
+    --muto-2:#6b7285;
+    --rosso:#ff3838;
+    --bordo:#232b3b;
+    --ph:#ffffff; /* placeholder immagini mancanti = bianco */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:#000;}
+  body{
+    font-family:-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--testo);
+    display:flex;justify-content:center;
+  }
+  /* telaio telefono */
+  .phone{
+    width:100%;max-width:430px;min-height:100vh;
+    background:var(--sfondo);
+    position:relative;
+    padding:0 0 96px;
+    overflow-x:hidden;
+  }
+  /* righe di solo testo: un filo di respiro dal bordo */
+  .header,.news-head{padding-left:14px;padding-right:14px}
+  .sezione{margin-top:22px}
+
+  /* label placeholder */
+  .ph{
+    background:var(--ph);
+    display:flex;align-items:center;justify-content:center;
+    color:#9aa1ad;font-size:10px;font-weight:700;letter-spacing:.5px;
+    text-transform:uppercase;text-align:center;line-height:1.2;
+  }
+
+  /* ── HEADER ───────────────────────────── */
+  .header{display:flex;align-items:center;justify-content:space-between;padding-top:18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:52px;height:52px;border-radius:16px;background:var(--lime);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-style:italic;font-size:22px;color:#0b0e13;letter-spacing:-1px;
+  }
+  .brand-txt{font-weight:900;line-height:.92;font-size:23px;letter-spacing:.5px}
+  .header-dx{display:flex;align-items:center;gap:16px}
+  .bell{position:relative;width:26px;height:26px;color:#e7e9ee}
+  .bell .badge{
+    position:absolute;top:-6px;right:-7px;background:var(--rosso);color:#fff;
+    font-size:11px;font-weight:800;min-width:19px;height:19px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;border:2px solid var(--sfondo);
+  }
+  .avatar{position:relative;width:50px;height:50px}
+  .avatar .ring{
+    position:absolute;inset:0;border-radius:50%;padding:3px;
+    background:conic-gradient(from 210deg,var(--lime),#7bd000,var(--lime));
+  }
+  .avatar .ph{width:100%;height:100%;border-radius:50%;font-size:8px}
+  .avatar .lvl{
+    position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);
+    background:var(--lime);color:#0b0e13;font-size:11px;font-weight:900;
+    padding:1px 7px;border-radius:9px;border:2px solid var(--sfondo);
+  }
+
+  /* ── HERO ─────────────────────────────── */
+  .hero{
+    position:relative;margin-top:20px;border-radius:24px;overflow:hidden;
+    aspect-ratio:16/10;background:var(--card);
+  }
+  .hero .ph{position:absolute;inset:0;font-size:12px;justify-content:flex-end;padding-right:26px}
+  .hero .scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(8,11,17,.97) 55%,rgba(8,11,17,.82) 70%,rgba(8,11,17,0) 92%);
+  }
+  .hero .cont{position:absolute;inset:0;padding:22px 20px;display:flex;flex-direction:column}
+  .hero h1{font-style:italic;font-weight:900;line-height:1;letter-spacing:-.5px;white-space:nowrap}
+  .hero .r1{font-size:23px}
+  .hero .r2{font-size:29px;color:var(--lime)}
+  .hero .gp{margin-top:14px;font-size:16px;font-weight:800}
+  .hero .date{margin-top:2px;font-size:13px;color:var(--muto)}
+  .btn-lime{
+    display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:#0b0e13;
+    font-weight:900;font-size:13px;letter-spacing:.3px;text-transform:uppercase;
+    padding:12px 20px;border-radius:26px;border:none;width:fit-content;
+  }
+  .hero .btn-lime{margin-top:18px}
+  .dots{display:flex;gap:7px;margin-top:auto}
+  .dots i{width:8px;height:8px;border-radius:50%;background:#39415360;display:block}
+  .dots i.on{background:var(--lime);width:22px;border-radius:4px}
+
+  /* ── RIGA ICONE ───────────────────────── */
+  .icone{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+  .tile{
+    min-width:0;
+    background:var(--tile);border:1px solid var(--bordo);border-radius:14px;
+    padding:7px 2px 7px;display:flex;flex-direction:column;align-items:center;gap:5px;
+  }
+  .tile .art{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+  .tile .art img{width:100%;height:100%;object-fit:contain}
+  .tile .art .ph{width:100%;height:100%;border-radius:9px;font-size:7px}
+  .tile span{font-size:8px;font-weight:800;letter-spacing:-.3px;color:#cfd4de;text-transform:uppercase;white-space:nowrap}
+
+  /* ── DUE CARD ─────────────────────────── */
+  .due{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .card2{min-width:0;border-radius:22px;padding:16px 14px;display:flex;flex-direction:column;min-height:290px}
+  .quiz{background:linear-gradient(160deg,#0f3f3d,#0a2529)}
+  .sfida{background:linear-gradient(160deg,#2c1c50,#191233)}
+  .c-top{display:flex;align-items:center;justify-content:space-between}
+  .kicker{font-size:11px;font-weight:900;letter-spacing:.6px;text-transform:uppercase}
+  .quiz .kicker{color:#37e0c8}
+  .sfida .kicker{color:#b79cff}
+  .c-icon{width:26px;height:26px;border-radius:50%;background:#ffffff18;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900}
+  .c-title{margin-top:12px;font-size:20px;font-weight:900;line-height:1.05}
+  .c-title b{color:var(--lime)}
+  .c-sub{margin-top:10px;font-size:15px;font-weight:800;line-height:1.15}
+  .mascotte{flex:1;display:flex;align-items:center;justify-content:center;margin:6px 0}
+  .mascotte .ph{width:130px;height:130px;border-radius:16px;font-size:9px}
+  .mascotte img{width:100%;height:100%;max-height:190px;object-fit:contain}
+  .cta{margin-top:auto;width:100%;justify-content:center;padding:13px 8px;font-size:12.5px;text-align:center;line-height:1.15}
+
+  /* sfida interni */
+  .vs{display:flex;align-items:center;justify-content:center;gap:6px;margin:14px 0 8px}
+  .vs .pl{width:48px;height:48px;flex-shrink:0;border-radius:50%;overflow:hidden}
+  .vs .pl .ph{width:100%;height:100%;border-radius:50%;font-size:8px}
+  .vs .lg{font-size:20px;font-weight:900;font-style:italic;color:var(--lime)}
+  .nomi{display:flex;justify-content:space-between;text-align:center;font-size:11px}
+  .nomi .n{flex:1}
+  .nomi .n b{display:block;font-weight:900;font-size:13px}
+  .nomi .n span{color:#cbd2e0;font-weight:700}
+  .scade{margin:12px auto 12px;font-size:12px;color:#d6dbe8;font-weight:700;display:flex;align-items:center;gap:6px;justify-content:center}
+
+  /* ── LIVE ─────────────────────────────── */
+  .live{position:relative;margin-top:22px;border-radius:22px;overflow:hidden;background:var(--card);min-height:172px}
+  .live .ph{position:absolute;inset:0;font-size:12px;justify-content:flex-end;padding-right:24px}
+  .live .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,13,20,.97) 52%,rgba(10,13,20,.78) 68%,rgba(10,13,20,0) 90%)}
+  .live .cont{position:absolute;inset:0;padding:18px 20px;display:flex;flex-direction:column}
+  .tag-live{display:inline-flex;align-items:center;gap:6px;background:var(--rosso);color:#fff;font-size:11px;font-weight:900;letter-spacing:1px;padding:4px 10px;border-radius:7px;width:fit-content}
+  .live h3{margin-top:10px;font-size:22px;font-weight:900}
+  .live .gp{font-size:12px;color:#aeb5c4;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
+  .live .inizia{margin-top:8px;font-size:12px;color:var(--muto);display:flex;align-items:center;gap:6px}
+  .count{display:flex;gap:14px;margin-top:6px}
+  .count .g{text-align:left}
+  .count .g b{font-size:26px;font-weight:900;letter-spacing:-1px}
+  .count .g span{display:block;font-size:9px;color:var(--muto);font-weight:800;letter-spacing:1px;margin-top:-2px}
+  .count .sep{width:1px;background:#2a3140;margin:2px 0}
+
+  /* ── NEWS ─────────────────────────────── */
+  .news-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .news-head .t{display:flex;align-items:center;gap:9px;font-size:17px;font-weight:900}
+  .news-head .t i{width:4px;height:18px;border-radius:2px;background:var(--lime);display:block}
+  .news-head .v{font-size:12px;color:var(--muto);font-weight:800;display:flex;align-items:center;gap:4px}
+  .news{display:flex;gap:14px;background:var(--card);border:1px solid var(--bordo);border-radius:18px;padding:12px}
+  .news .thumb{width:96px;height:80px;border-radius:12px;flex-shrink:0}
+  .news .thumb.ph{font-size:8px}
+  .news .body{min-width:0;flex:1;position:relative}
+  .news .toptag{font-size:10px;font-weight:900;color:var(--lime);letter-spacing:.5px}
+  .news .h{margin-top:4px;font-size:15px;font-weight:800;line-height:1.15}
+  .news .p{margin-top:3px;font-size:13px;color:var(--muto)}
+  .news .meta{margin-top:7px;font-size:11px;color:var(--muto-2);font-weight:700}
+  .news .chat{position:absolute;right:0;bottom:0;color:var(--muto)}
+
+  /* ── BOTTOM NAV ───────────────────────── */
+  .nav{
+    position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+    width:100%;max-width:430px;height:78px;background:#0b0f17;
+    border-top:1px solid var(--bordo);
+    display:flex;align-items:flex-start;justify-content:space-around;
+    padding-top:12px;
+  }
+  .nav a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:800;color:var(--muto);text-decoration:none;flex:1}
+  .nav a.on{color:var(--lime)}
+  .nav svg{width:24px;height:24px}
+  .fab{
+    margin-top:-26px;width:60px;height:60px;border-radius:50%;background:var(--lime);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px #c8f50055;
+  }
+  .fab svg{width:28px;height:28px;color:#0b0e13}
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="logo">SV</div>
+      <div class="brand-txt">SECTOR<br>VAULT</div>
+    </div>
+    <div class="header-dx">
+      <div class="bell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        <span class="badge">3</span>
+      </div>
+      <div class="avatar">
+        <div class="ring"></div>
+        <div class="ph" style="position:absolute;inset:3px">IMG</div>
+        <span class="lvl">12</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="ph">IMMAGINE HERO<br>(Miami)</div>
+    <div class="scrim"></div>
+    <div class="cont">
+      <h1 class="r1">WEEKEND DI GARA</h1>
+      <h1 class="r2">È ARRIVATO! 🏁</h1>
+      <div class="gp">Gran Premio di Miami 🇺🇸</div>
+      <div class="date">2 – 4 Maggio</div>
+      <button class="btn-lime">SCOPRI DI PIÙ ›</button>
+      <div class="dots"><i class="on"></i><i></i><i></i></div>
+    </div>
+  </div>
+
+  <!-- ICONE -->
+  <div class="sezione icone">
+    <div class="tile"><div class="art"><div class="ph">IMG</div></div><span>Piloti</span></div>
+    <div class="tile"><div class="art"><img src="assets/scuderie.png" alt=""></div><span>Scuderie</span></div>
+    <div class="tile"><div class="art"><img src="assets/circuiti.png" alt=""></div><span>Circuiti</span></div>
+    <div class="tile"><div class="art"><img src="assets/classifiche.png" alt=""></div><span>Classifiche</span></div>
+    <div class="tile"><div class="art"><img src="assets/quiz.png" alt=""></div><span>Quiz</span></div>
+    <div class="tile"><div class="art"><img src="assets/statistiche.png" alt=""></div><span>Statistiche</span></div>
+  </div>
+
+  <!-- DUE CARD -->
+  <div class="sezione due">
+    <!-- QUIZ -->
+    <div class="card2 quiz">
+      <div class="c-top">
+        <div class="kicker">Quiz del giorno</div>
+        <div class="c-icon">?</div>
+      </div>
+      <div class="c-title">Quanto ne sai sulla <b>F1</b>?</div>
+      <div class="mascotte"><img src="assets/mascotte-quiz.png" alt=""></div>
+      <button class="btn-lime cta">Inizia il quiz ›</button>
+    </div>
+    <!-- SFIDA -->
+    <div class="card2 sfida">
+      <div class="c-top">
+        <div class="kicker">Sfida settimanale</div>
+        <div class="c-icon" style="background:none;font-size:16px">🔥</div>
+      </div>
+      <div class="c-sub">Sfida un amico e dimostra chi è il top!</div>
+      <div class="vs">
+        <div class="pl"><div class="ph">TU</div></div>
+        <div class="lg">VS</div>
+        <div class="pl"><div class="ph">RIV</div></div>
+      </div>
+      <div class="nomi">
+        <div class="n"><b>TU</b><span>2.450 XP</span></div>
+        <div class="n"><b>BEPPE</b><span>1.890 XP</span></div>
+      </div>
+      <div class="scade">⏱ Scade tra: 5g 14h</div>
+      <button class="btn-lime cta">Accetta la sfida ›</button>
+    </div>
+  </div>
+
+  <!-- LIVE -->
+  <div class="live">
+    <div class="ph">IMMAGINE LIVE<br>(tribuna + tracciato)</div>
+    <div class="scrim"></div>
+    <div class="cont">
+      <div class="tag-live">● LIVE</div>
+      <h3>PROVE LIBERE 1</h3>
+      <div class="gp">GP di Miami 🇺🇸</div>
+      <div class="inizia">⏱ Inizia tra</div>
+      <div class="count">
+        <div class="g"><b>01</b><span>GIORNI</span></div>
+        <div class="sep"></div>
+        <div class="g"><b>06</b><span>ORE</span></div>
+        <div class="sep"></div>
+        <div class="g"><b>42</b><span>MIN</span></div>
+        <div class="sep"></div>
+        <div class="g"><b>15</b><span>SEC</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWS -->
+  <div class="sezione">
+    <div class="news-head">
+      <div class="t"><i></i>Ultime news</div>
+      <div class="v">Vedi tutte ›</div>
+    </div>
+    <div class="news">
+      <div class="thumb ph">IMG</div>
+      <div class="body">
+        <div class="toptag">TOP NEWS</div>
+        <div class="h">Verstappen in pole a Miami!</div>
+        <div class="p">Giro perfetto nel finale.</div>
+        <div class="meta">2 ore fa • 256 commenti</div>
+        <svg class="chat" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+  <a class="on" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5M6 10v9h4v-5h4v5h4v-9"/></svg>Home</a>
+  <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Esplora</a>
+  <a href="#"><div class="fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h13l-2.5 3.5L18 11H5"/></svg></div></a>
+  <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13 7 6h10l2 7"/><path d="M4 13h16v5H4z"/><circle cx="8" cy="18" r="0.5"/></svg>Garage</a>
+  <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profilo</a>
+</div>
+
+</body>
+</html>
