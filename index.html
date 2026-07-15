@@ -144,10 +144,10 @@
      così gli avatar restano centrati e il timer resta appena sopra il bottone */
   .sfida .vs{margin-top:auto}
   .sfida .cta{margin-top:0}
-  .vs{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 8px}
+  .vs{display:flex;align-items:center;justify-content:center;gap:0;margin:0 0 8px}
   .vs .pl{width:62px;height:62px;flex-shrink:0;border-radius:50%;overflow:hidden}
   .vs .pl .ph{width:100%;height:100%;border-radius:50%;font-size:8px}
-  .vs .lg{font-size:20px;font-weight:900;font-style:italic;color:var(--lime)}
+  .vs .lg-img{width:54px;height:auto;margin:0 -12px;flex-shrink:0;position:relative;z-index:3;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
   .nomi{display:flex;justify-content:space-between;text-align:center;font-size:11px}
   .nomi .n{flex:1}
   .nomi .n b{display:block;font-weight:900;font-size:13px}
@@ -270,7 +270,7 @@
       <div class="c-sub">Sfida un amico e dimostra chi è il top!</div>
       <div class="vs">
         <div class="pl"><div class="ph">TU</div></div>
-        <div class="lg">VS</div>
+        <img class="lg-img" src="assets/vs.png" alt="VS">
         <div class="pl"><div class="ph">RIV</div></div>
       </div>
       <div class="nomi">
