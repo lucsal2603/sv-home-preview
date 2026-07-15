@@ -116,8 +116,8 @@
   .due{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .card2{position:relative;overflow:hidden;min-width:0;border-radius:22px;padding:16px 14px;display:flex;flex-direction:column;min-height:300px}
   /* "?" in filigrana obliquo nello sfondo del quiz */
-  .qmark{position:absolute;z-index:0;right:2px;top:32%;font-size:180px;line-height:1;
-    font-weight:900;font-style:italic;color:rgba(130,230,210,.13);transform:rotate(18deg);pointer-events:none}
+  .qmark{position:absolute;z-index:0;right:10px;top:16%;font-size:170px;line-height:1;
+    font-weight:900;font-style:italic;color:rgba(135,235,215,.20);transform:rotate(18deg);pointer-events:none}
   .quiz .c-top,.quiz .c-title,.quiz .cta{position:relative;z-index:2}
   .quiz{background:linear-gradient(160deg,#0f3f3d,#0a2529)}
   .sfida{background:linear-gradient(160deg,#2c1c50,#191233)}
@@ -131,24 +131,25 @@
   .c-sub{margin-top:10px;font-size:15px;font-weight:800;line-height:1.15}
   /* personaggio grande, ancorato in basso e spostato a sinistra: la parte
      bassa del corpo finisce dietro al bottone (si vede da metà busto in su) */
-  .mascottona{position:absolute;z-index:1;left:-8px;bottom:30px;width:86%;height:auto;
+  .mascottona{position:absolute;z-index:1;left:8px;bottom:22px;width:73%;height:auto;
     pointer-events:none;filter:drop-shadow(0 6px 12px rgba(0,0,0,.35))}
   .cta{margin-top:auto;width:100%;justify-content:center;padding:13px 8px;font-size:12.5px;text-align:center;line-height:1.15}
   .quiz .cta{z-index:3}
 
   /* sfida interni */
-  /* abbassa il blocco sfida: lo spazio libero va sopra gli avatar */
+  /* abbassa il blocco sfida: spazio sopra gli avatar e sopra il timer,
+     così gli avatar restano centrati e il timer resta appena sopra il bottone */
   .sfida .vs{margin-top:auto}
-  .sfida .cta{margin-top:14px}
-  .vs{display:flex;align-items:center;justify-content:center;gap:4px;margin:0 0 8px}
-  .vs .pl{width:58px;height:58px;flex-shrink:0;border-radius:50%;overflow:hidden}
+  .sfida .cta{margin-top:0}
+  .vs{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 8px}
+  .vs .pl{width:62px;height:62px;flex-shrink:0;border-radius:50%;overflow:hidden}
   .vs .pl .ph{width:100%;height:100%;border-radius:50%;font-size:8px}
-  .vs .lg{font-size:21px;font-weight:900;font-style:italic;color:var(--lime)}
+  .vs .lg{font-size:20px;font-weight:900;font-style:italic;color:var(--lime)}
   .nomi{display:flex;justify-content:space-between;text-align:center;font-size:11px}
   .nomi .n{flex:1}
   .nomi .n b{display:block;font-weight:900;font-size:13px}
   .nomi .n span{color:#cbd2e0;font-weight:700}
-  .scade{margin:12px auto 12px;font-size:12px;color:#d6dbe8;font-weight:700;display:flex;align-items:center;gap:6px;justify-content:center}
+  .scade{margin:auto auto 10px;font-size:12px;color:#d6dbe8;font-weight:700;display:flex;align-items:center;gap:6px;justify-content:center}
 
   /* ── LIVE ─────────────────────────────── */
   .live{position:relative;margin-top:22px;border-radius:22px;overflow:hidden;background:var(--card);min-height:172px}
