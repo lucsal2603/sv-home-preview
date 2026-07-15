@@ -114,7 +114,11 @@
 
   /* ── DUE CARD ─────────────────────────── */
   .due{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .card2{min-width:0;border-radius:22px;padding:16px 14px;display:flex;flex-direction:column;min-height:290px}
+  .card2{position:relative;overflow:hidden;min-width:0;border-radius:22px;padding:16px 14px;display:flex;flex-direction:column;min-height:300px}
+  /* "?" in filigrana obliquo nello sfondo del quiz */
+  .qmark{position:absolute;z-index:0;right:2px;top:32%;font-size:180px;line-height:1;
+    font-weight:900;font-style:italic;color:rgba(130,230,210,.13);transform:rotate(18deg);pointer-events:none}
+  .quiz .c-top,.quiz .c-title,.quiz .cta{position:relative;z-index:2}
   .quiz{background:linear-gradient(160deg,#0f3f3d,#0a2529)}
   .sfida{background:linear-gradient(160deg,#2c1c50,#191233)}
   .c-top{display:flex;align-items:center;justify-content:space-between}
@@ -125,16 +129,21 @@
   .c-title{margin-top:12px;font-size:20px;font-weight:900;line-height:1.05}
   .c-title b{color:var(--lime)}
   .c-sub{margin-top:10px;font-size:15px;font-weight:800;line-height:1.15}
-  .mascotte{flex:1;display:flex;align-items:center;justify-content:center;margin:6px 0}
-  .mascotte .ph{width:130px;height:130px;border-radius:16px;font-size:9px}
-  .mascotte img{width:100%;height:100%;max-height:190px;object-fit:contain}
+  /* personaggio grande, ancorato in basso e spostato a sinistra: la parte
+     bassa del corpo finisce dietro al bottone (si vede da metà busto in su) */
+  .mascottona{position:absolute;z-index:1;left:-8px;bottom:30px;width:86%;height:auto;
+    pointer-events:none;filter:drop-shadow(0 6px 12px rgba(0,0,0,.35))}
   .cta{margin-top:auto;width:100%;justify-content:center;padding:13px 8px;font-size:12.5px;text-align:center;line-height:1.15}
+  .quiz .cta{z-index:3}
 
   /* sfida interni */
-  .vs{display:flex;align-items:center;justify-content:center;gap:6px;margin:14px 0 8px}
-  .vs .pl{width:48px;height:48px;flex-shrink:0;border-radius:50%;overflow:hidden}
+  /* abbassa il blocco sfida: lo spazio libero va sopra gli avatar */
+  .sfida .vs{margin-top:auto}
+  .sfida .cta{margin-top:14px}
+  .vs{display:flex;align-items:center;justify-content:center;gap:4px;margin:0 0 8px}
+  .vs .pl{width:58px;height:58px;flex-shrink:0;border-radius:50%;overflow:hidden}
   .vs .pl .ph{width:100%;height:100%;border-radius:50%;font-size:8px}
-  .vs .lg{font-size:20px;font-weight:900;font-style:italic;color:var(--lime)}
+  .vs .lg{font-size:21px;font-weight:900;font-style:italic;color:var(--lime)}
   .nomi{display:flex;justify-content:space-between;text-align:center;font-size:11px}
   .nomi .n{flex:1}
   .nomi .n b{display:block;font-weight:900;font-size:13px}
@@ -239,12 +248,13 @@
   <div class="sezione due">
     <!-- QUIZ -->
     <div class="card2 quiz">
+      <span class="qmark">?</span>
       <div class="c-top">
         <div class="kicker">Quiz del giorno</div>
         <div class="c-icon">?</div>
       </div>
       <div class="c-title">Quanto ne sai sulla <b>F1</b>?</div>
-      <div class="mascotte"><img src="assets/mascotte-quiz.png" alt=""></div>
+      <img class="mascottona" src="assets/mascotte-quiz-busto.png" alt="">
       <button class="btn-lime cta">Inizia il quiz ›</button>
     </div>
     <!-- SFIDA -->
