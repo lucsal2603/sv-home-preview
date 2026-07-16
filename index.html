@@ -80,26 +80,35 @@
     position:relative;margin-top:20px;border-radius:24px;overflow:hidden;
     aspect-ratio:16/10;background:var(--card);
   }
+  .hero-track{display:flex;width:100%;height:100%;transition:transform .55s cubic-bezier(.65,0,.2,1);will-change:transform}
+  .slide{position:relative;flex:0 0 100%;height:100%}
   .hero .ph{position:absolute;inset:0;font-size:12px;justify-content:flex-end;padding-right:26px}
   .hero .scrim{
     position:absolute;inset:0;
     background:linear-gradient(90deg,rgba(8,11,17,.97) 55%,rgba(8,11,17,.82) 70%,rgba(8,11,17,0) 92%);
   }
-  .hero .cont{position:absolute;inset:0;padding:22px 20px;display:flex;flex-direction:column}
+  .hero .cont{position:absolute;inset:0;padding:22px 20px 40px;display:flex;flex-direction:column;justify-content:center}
   .hero h1{font-style:italic;font-weight:900;line-height:1;letter-spacing:-.5px;white-space:nowrap}
   .hero .r1{font-size:23px}
   .hero .r2{font-size:29px;color:var(--lime)}
   .hero .gp{margin-top:14px;font-size:16px;font-weight:800}
   .hero .date{margin-top:2px;font-size:13px;color:var(--muto)}
+  .s-kick{font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:var(--lime)}
+  .s-title{margin-top:6px;font-size:23px;font-weight:900;font-style:italic;line-height:1.02;letter-spacing:-.3px}
+  .s-sub{margin-top:9px;font-size:13.5px;font-weight:600;color:#d6dbe8;line-height:1.35;max-width:62%}
   .btn-lime{
     display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:#0b0e13;
     font-weight:900;font-size:13px;letter-spacing:.3px;text-transform:uppercase;
     padding:12px 20px;border-radius:26px;border:none;width:fit-content;
   }
-  .hero .btn-lime{margin-top:18px}
-  .dots{display:flex;gap:7px;margin-top:auto}
-  .dots i{width:8px;height:8px;border-radius:50%;background:#39415360;display:block}
-  .dots i.on{background:var(--lime);width:22px;border-radius:4px}
+  .hero .btn-lime{margin-top:16px}
+  /* pallini con barra verde che si riempie (stile storie) */
+  .dots{position:absolute;bottom:15px;left:20px;z-index:5;display:flex;gap:7px}
+  .dots i{width:8px;height:7px;border-radius:4px;background:#5a637a55;display:block;transition:width .45s ease}
+  .dots i.on{width:26px;position:relative;overflow:hidden}
+  .dots i.on::after{content:"";position:absolute;inset:0;background:var(--lime);border-radius:4px;transform-origin:left;transform:scaleX(0);animation:riempi-dot var(--dot-dur,5s) linear forwards}
+  @keyframes riempi-dot{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media (prefers-reduced-motion:reduce){.hero-track{transition:none}.dots i.on::after{animation:none;transform:scaleX(1)}}
 
   /* ── RIGA ICONE ───────────────────────── */
   .icone{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
@@ -234,16 +243,43 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="ph">IMMAGINE HERO<br>(Miami)</div>
-    <div class="scrim"></div>
-    <div class="cont">
-      <h1 class="r1">WEEKEND DI GARA</h1>
-      <h1 class="r2">È ARRIVATO! 🏁</h1>
-      <div class="gp">Gran Premio di Miami 🇺🇸</div>
-      <div class="date">2 – 4 Maggio</div>
-      <button class="btn-lime">SCOPRI DI PIÙ ›</button>
-      <div class="dots"><i class="on"></i><i></i><i></i></div>
+    <div class="hero-track">
+      <!-- Slide 1: weekend di gara -->
+      <div class="slide">
+        <div class="ph">IMMAGINE HERO<br>(Miami)</div>
+        <div class="scrim"></div>
+        <div class="cont">
+          <h1 class="r1">WEEKEND DI GARA</h1>
+          <h1 class="r2">È ARRIVATO! 🏁</h1>
+          <div class="gp">Gran Premio di Miami 🇺🇸</div>
+          <div class="date">2 – 4 Maggio</div>
+          <button class="btn-lime">SCOPRI DI PIÙ ›</button>
+        </div>
+      </div>
+      <!-- Slide 2: recap ultimo GP -->
+      <div class="slide">
+        <div class="ph">IMMAGINE<br>(podio Silverstone)</div>
+        <div class="scrim"></div>
+        <div class="cont">
+          <div class="s-kick">L'ultima gara</div>
+          <div class="s-title">Leclerc trionfa<br>a Silverstone 🇬🇧</div>
+          <div class="s-sub">1° Leclerc · 2° Russell · 3° Hamilton</div>
+          <button class="btn-lime">RIVIVI LA GARA ›</button>
+        </div>
+      </div>
+      <!-- Slide 3: notizia in evidenza -->
+      <div class="slide">
+        <div class="ph">IMMAGINE<br>(news Ferrari)</div>
+        <div class="scrim"></div>
+        <div class="cont">
+          <div class="s-kick">In evidenza</div>
+          <div class="s-title">Ferrari, nuovo<br>fondo a Miami</div>
+          <div class="s-sub">Aggiornamenti aero nel weekend di casa: il team punta al podio.</div>
+          <button class="btn-lime">LEGGI ›</button>
+        </div>
+      </div>
     </div>
+    <div class="dots"><i class="on"></i><i></i><i></i></div>
   </div>
 
   <!-- ICONE -->
@@ -339,6 +375,25 @@
   <a href="#"><img class="nav-ico" src="assets/garage.png" alt="">Garage</a>
   <a href="#"><img class="nav-ico" src="assets/profilo.png" alt="">Profilo</a>
 </div>
+
+<script>
+(function(){
+  var hero=document.querySelector('.hero'); if(!hero) return;
+  var track=hero.querySelector('.hero-track');
+  var dots=[].slice.call(hero.querySelectorAll('.dots i'));
+  var n=dots.length, idx=0, DUR=5000, timer;
+  hero.style.setProperty('--dot-dur', (DUR/1000)+'s');
+  function show(i){
+    idx=(i%n+n)%n;
+    track.style.transform='translateX(-'+(idx*100)+'%)';
+    dots.forEach(function(d,k){ d.classList.toggle('on', k===idx); });
+  }
+  function next(){ show(idx+1); }
+  function play(){ clearInterval(timer); timer=setInterval(next, DUR); }
+  dots.forEach(function(d,k){ d.style.cursor='pointer'; d.addEventListener('click', function(){ show(k); play(); }); });
+  show(0); play();
+})();
+</script>
 
 </body>
 </html>
