@@ -32,8 +32,8 @@
 
   /* ── INTRO (centrata) ── */
   .intro{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:20px;padding:0 16px}
-  .qcard{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(135deg,#16223a,#0e1524);border:1px solid var(--bordo);display:flex;min-height:210px}
-  .qcard .txt{position:relative;z-index:2;padding:20px 18px;flex:0 0 56%;max-width:56%;min-width:0}
+  .qcard{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(135deg,#16223a,#0e1524);border:1px solid var(--bordo);min-height:212px}
+  .qcard .txt{position:relative;z-index:2;padding:20px 18px;max-width:60%}
   .qkick{font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#37e0c8}
   .qbig{margin-top:7px;font-size:24px;font-weight:900;line-height:1.05;letter-spacing:-.5px}
   .qbig b{color:var(--lime)}
@@ -42,9 +42,10 @@
   .xpbadge{width:44px;height:44px;border-radius:13px;background:linear-gradient(145deg,#8b5cf6,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;box-shadow:0 4px 14px #7c3aed66;flex-shrink:0}
   .qxp .t b{display:block;font-size:16px;font-weight:900}
   .qxp .t span{font-size:12px;color:var(--muto)}
-  .qcard .img{position:absolute;right:0;top:0;bottom:0;width:47%;font-size:11px;object-fit:cover;object-position:center}
-  /* sfuma il bordo sinistro dell'immagine dentro la card */
-  .qcard::after{content:"";position:absolute;top:0;bottom:0;left:46%;width:16%;z-index:1;pointer-events:none;background:linear-gradient(90deg,#101a2e,rgba(16,26,46,0))}
+  /* immagine a SFONDO PIENO della card (copre tutto lo spazio) */
+  .qcard .img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:64% center}
+  /* velatura per rendere leggibile il testo a sinistra */
+  .qcard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(9,14,24,.97) 34%,rgba(9,14,24,.6) 60%,rgba(9,14,24,.05) 100%)}
 
   /* ── QUIZ (domande, centrate, no scroll) ── */
   .quizview{flex:1;min-height:0;display:flex;flex-direction:column}
@@ -59,7 +60,7 @@
   .prog .serie b{color:var(--rosso);font-size:14px}
 
   .qcontent{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:0 16px}
-  .qimg{flex:0 1 auto;height:clamp(80px,24vh,210px);min-height:58px;width:100%;border-radius:16px}
+  .qimg{flex:0 1 auto;height:clamp(80px,24vh,210px);min-height:58px;width:100%;border-radius:16px;background-size:cover;background-position:center;background-repeat:no-repeat}
   .qtext{flex-shrink:0;font-size:18px;font-weight:800;line-height:1.25;text-align:center}
   .opzioni{flex-shrink:0;display:flex;flex-direction:column;gap:9px}
   .opz{display:flex;align-items:center;gap:13px;background:#0f1420;box-shadow:inset 0 0 0 1.5px #2a3448;border-radius:14px;padding:11px 14px;cursor:pointer;transition:box-shadow .15s}
@@ -158,28 +159,31 @@
 (function(){
   var DOMANDE=[
     {q:"Quale pilota ha vinto il primo campionato del mondo di Formula 1 nel 1950?",
-     opz:["Juan Manuel Fangio","Alberto Ascari","Nino Farina","Stirling Moss"], giusta:2},
+     opz:["Juan Manuel Fangio","Alberto Ascari","Nino Farina","Stirling Moss"], giusta:2, img:"assets/domanda1.png"},
     {q:"Quale scuderia ha vinto più titoli costruttori nella storia della F1?",
-     opz:["Mercedes","Ferrari","McLaren","Red Bull"], giusta:1},
+     opz:["Mercedes","Ferrari","McLaren","Red Bull"], giusta:1, img:null},
     {q:"In quale città si corre lo storico Gran Premio di Monaco?",
-     opz:["Montecarlo","Nizza","Cannes","Marsiglia"], giusta:0},
+     opz:["Montecarlo","Nizza","Cannes","Marsiglia"], giusta:0, img:null},
     {q:"Chi ha vinto il Campionato del Mondo Piloti nel 2021?",
-     opz:["Lewis Hamilton","Charles Leclerc","Valtteri Bottas","Max Verstappen"], giusta:3},
+     opz:["Lewis Hamilton","Charles Leclerc","Valtteri Bottas","Max Verstappen"], giusta:3, img:null},
     {q:"Cosa indica la bandiera a scacchi in Formula 1?",
-     opz:["L'ingresso ai box","La fine della gara","Pericolo in pista","La safety car"], giusta:1}
+     opz:["L'ingresso ai box","La fine della gara","Pericolo in pista","La safety car"], giusta:1, img:null}
   ];
   var L=["A","B","C","D"], i=0, sel=[null,null,null,null,null];
   var $=function(id){return document.getElementById(id);};
   var intro=$('intro'), quizview=$('quizview'),
       progFill=$('progFill'), progNum=$('progNum'), qText=$('qText'),
       opzioni=$('opzioni'), btnSucc=$('btnSucc'), btnIndietro=$('btnIndietro'),
-      btnInizia=$('btnInizia'), btnEsci=$('btnEsci');
+      btnInizia=$('btnInizia'), btnEsci=$('btnEsci'),
+      qimg=document.querySelector('.qimg');
 
   function render(){
     var d=DOMANDE[i];
     progNum.textContent=i+1;
     progFill.style.width=((i+1)/DOMANDE.length*100)+'%';
     qText.textContent=d.q;
+    if(d.img){ qimg.classList.remove('ph'); qimg.innerHTML=''; qimg.style.backgroundImage='url("'+d.img+'")'; }
+    else { qimg.classList.add('ph'); qimg.style.backgroundImage=''; qimg.innerHTML='IMMAGINE<br>DOMANDA'; }
     opzioni.innerHTML='';
     d.opz.forEach(function(t,k){
       var el=document.createElement('div');
