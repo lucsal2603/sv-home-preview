@@ -123,8 +123,9 @@
   .rchest .pbt{font-size:11px;color:var(--muto-2);margin-top:5px;font-weight:700}
 
   .rbtns{margin-top:16px;display:flex;gap:12px}
-  .rbtns a.btn-out,.rbtns button.btn-out{flex:1;justify-content:center;text-decoration:none}
-  .rbtns .btn-lime{flex:1;gap:10px}
+  .rbtns .btn-out,.rbtns .btn-lime{flex:1;justify-content:center;text-decoration:none;padding:13px 10px;font-size:12.5px;white-space:nowrap;gap:9px}
+  .rbtns .btn-lime .div{width:1.5px;height:15px;background:#0b0e13;opacity:.38;flex-shrink:0}
+  .rbtns .btn-lime svg{width:15px;height:15px}
 
   /* NAV */
   .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:84px;background:transparent;display:flex;align-items:flex-start;justify-content:space-around;padding-top:14px;z-index:1000}
@@ -251,7 +252,7 @@
 
     <div class="rbtns">
       <a class="btn-out" href="index.html">Torna alla home</a>
-      <button class="btn-lime" id="btnSfida">Sfida un amico ⚡</button>
+      <button class="btn-lime" id="btnSfida">Sfida un amico<span class="div"></span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></button>
     </div>
   </div>
 </div>
