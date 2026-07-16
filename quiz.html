@@ -14,12 +14,12 @@
   body{font-family:-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--testo);display:flex;justify-content:center}
   .phone{width:100%;max-width:430px;height:100dvh;background:var(--sfondo);position:relative;padding:0 0 84px;overflow:hidden;display:flex;flex-direction:column}
   .ph{background:var(--ph);display:flex;align-items:center;justify-content:center;color:#9aa1ad;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-align:center;line-height:1.2}
-  .wrap{padding:0 16px}
+  [hidden]{display:none!important}
 
   /* HEADER */
   .qhead{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 0;flex-shrink:0}
   .qhead-l{display:flex;align-items:center;gap:12px}
-  .back{width:30px;height:30px;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none}
+  .back{width:30px;height:30px;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;background:none;border:none;cursor:pointer}
   .back svg{width:26px;height:26px}
   .qtitle{font-weight:900;font-size:21px;letter-spacing:.5px}
   .header-dx{display:flex;align-items:center;gap:16px}
@@ -30,21 +30,23 @@
   .avatar-img{position:absolute;top:3px;left:3px;width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center top;background:radial-gradient(circle at 50% 32%,#f0524a,#8f1717)}
   .avatar .lvl{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:var(--lime);color:#0b0e13;font-size:11px;font-weight:900;padding:1px 7px;border-radius:9px;border:2px solid var(--sfondo)}
 
-  /* CARD QUIZ IN ALTO */
-  .qcard{position:relative;overflow:hidden;margin:12px 16px 0;border-radius:20px;background:linear-gradient(135deg,#16223a,#0e1524);border:1px solid var(--bordo);display:flex;flex-shrink:0}
-  .qcard .txt{position:relative;z-index:2;padding:15px 16px;flex:1}
-  .qkick{font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#37e0c8}
-  .qbig{margin-top:5px;font-size:22px;font-weight:900;line-height:1.02;letter-spacing:-.5px}
+  /* ── INTRO (centrata) ── */
+  .intro{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:20px;padding:0 16px}
+  .qcard{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(135deg,#16223a,#0e1524);border:1px solid var(--bordo);display:flex;min-height:210px}
+  .qcard .txt{position:relative;z-index:2;padding:20px 18px;flex:0 0 56%;max-width:56%;min-width:0}
+  .qkick{font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#37e0c8}
+  .qbig{margin-top:7px;font-size:24px;font-weight:900;line-height:1.05;letter-spacing:-.5px}
   .qbig b{color:var(--lime)}
-  .qsub{margin-top:5px;font-size:13px;color:#d6dbe8;font-weight:600}
-  .qxp{margin-top:12px;display:flex;align-items:center;gap:10px}
-  .xpbadge{width:38px;height:38px;border-radius:11px;background:linear-gradient(145deg,#8b5cf6,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;box-shadow:0 4px 14px #7c3aed66;flex-shrink:0}
-  .qxp .t b{display:block;font-size:15px;font-weight:900}
-  .qxp .t span{font-size:11px;color:var(--muto)}
-  .qcard .img{position:absolute;right:0;top:0;bottom:0;width:46%;font-size:11px}
+  .qsub{margin-top:8px;font-size:14px;color:#d6dbe8;font-weight:600}
+  .qxp{margin-top:18px;display:flex;align-items:center;gap:11px}
+  .xpbadge{width:44px;height:44px;border-radius:13px;background:linear-gradient(145deg,#8b5cf6,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;box-shadow:0 4px 14px #7c3aed66;flex-shrink:0}
+  .qxp .t b{display:block;font-size:16px;font-weight:900}
+  .qxp .t span{font-size:12px;color:var(--muto)}
+  .qcard .img{position:absolute;right:0;top:0;bottom:0;width:47%;font-size:11px}
 
-  /* PROGRESSO */
-  .prog{margin:12px 16px 0;display:flex;align-items:center;gap:10px;flex-shrink:0}
+  /* ── QUIZ (domande, centrate, no scroll) ── */
+  .quizview{flex:1;min-height:0;display:flex;flex-direction:column}
+  .prog{margin:14px 16px 0;display:flex;align-items:center;gap:10px;flex-shrink:0}
   .prog .k{font-size:12px;font-weight:900;letter-spacing:.5px;color:#37e0c8;text-transform:uppercase}
   .prog .bar{flex:1;height:9px;border-radius:6px;background:#1c2434;overflow:hidden}
   .prog .bar i{display:block;height:100%;background:var(--lime);border-radius:6px;transition:width .35s ease}
@@ -54,11 +56,10 @@
   .prog .serie img{width:16px;height:18px;object-fit:contain}
   .prog .serie b{color:var(--rosso);font-size:14px}
 
-  /* CARD DOMANDA */
-  .qbox{margin:12px 16px 0;background:var(--card);border:1px solid var(--bordo);border-radius:20px;padding:15px 16px;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
-  .qtext{font-size:17px;font-weight:800;line-height:1.25;flex-shrink:0}
-  .qimg{margin-top:11px;width:100%;flex:1 1 auto;min-height:52px;border-radius:14px}
-  .opzioni{margin-top:11px;display:flex;flex-direction:column;gap:9px;flex-shrink:0}
+  .qcontent{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:0 16px}
+  .qimg{flex:0 1 auto;height:clamp(80px,24vh,210px);min-height:58px;width:100%;border-radius:16px}
+  .qtext{flex-shrink:0;font-size:18px;font-weight:800;line-height:1.25;text-align:center}
+  .opzioni{flex-shrink:0;display:flex;flex-direction:column;gap:9px}
   .opz{display:flex;align-items:center;gap:13px;background:#0f1420;box-shadow:inset 0 0 0 1.5px #2a3448;border-radius:14px;padding:11px 14px;cursor:pointer;transition:box-shadow .15s}
   .opz .lett{width:31px;height:31px;border-radius:50%;border:2px solid #414d66;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#cfd4de;flex-shrink:0}
   .opz .txt{font-size:15px;font-weight:600}
@@ -66,11 +67,12 @@
   .opz.scelta .lett{background:var(--lime);border-color:var(--lime);color:#0b0e13}
 
   /* BOTTONI */
-  .qnav{margin:12px 16px 0;display:flex;gap:12px;flex-shrink:0}
-  .btn-out{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid #2c3648;color:#cfd4de;font-weight:800;font-size:13px;letter-spacing:.4px;text-transform:uppercase;padding:13px 18px;border-radius:24px;cursor:pointer}
-  .btn-lime{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--lime);color:#0b0e13;font-weight:900;font-size:14px;letter-spacing:.4px;text-transform:uppercase;padding:14px 20px;border-radius:24px;border:none;cursor:pointer}
+  .qnav{margin:14px 16px 0;display:flex;gap:12px;flex-shrink:0}
+  .intro .start{width:100%;flex:0 0 auto;font-size:16px;padding:17px 20px}
+  .btn-out{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid #2c3648;color:#cfd4de;font-weight:800;font-size:13px;letter-spacing:.4px;text-transform:uppercase;padding:14px 18px;border-radius:26px;cursor:pointer}
+  .btn-lime{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--lime);color:#0b0e13;font-weight:900;font-size:15px;letter-spacing:.4px;text-transform:uppercase;padding:16px 20px;border-radius:26px;border:none;cursor:pointer}
 
-  /* NAV (uguale alla home) */
+  /* NAV */
   .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:84px;background:transparent;display:flex;align-items:flex-start;justify-content:space-around;padding-top:14px;z-index:1000}
   .nav::before{content:"";position:absolute;inset:0;z-index:-1;background:#0e1420;border-radius:28px 28px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.4);
     --tacca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 60'%3E%3Cpath d='M30 0 L120 0 Q113.7 0 113.7 6 A40 40 0 1 1 36.3 6 Q36.3 0 30 0 Z' fill='%23000'/%3E%3C/svg%3E");
@@ -89,7 +91,7 @@
   <!-- HEADER -->
   <div class="qhead">
     <div class="qhead-l">
-      <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <button class="back" id="btnEsci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
       <div class="qtitle">QUIZ DEL GIORNO</div>
     </div>
     <div class="header-dx">
@@ -101,40 +103,43 @@
     </div>
   </div>
 
-  <!-- CARD QUIZ -->
-  <div class="qcard">
-    <div class="txt">
-      <div class="qkick">DOMANDA <span id="numDom">1</span>/5</div>
-      <div class="qbig">Quanto ne sai<br>sulla <b>F1</b>?</div>
-      <div class="qsub">Rispondi e guadagna XP!</div>
-      <div class="qxp">
-        <div class="xpbadge">XP</div>
-        <div class="t"><b>+100 XP</b><span>per risposta corretta</span></div>
+  <!-- INTRO -->
+  <div class="intro" id="intro">
+    <div class="qcard">
+      <div class="txt">
+        <div class="qkick">Quiz del giorno</div>
+        <div class="qbig">Quanto ne sai sulla <b>F1</b>?</div>
+        <div class="qsub">5 domande sulla Formula 1</div>
+        <div class="qxp">
+          <div class="xpbadge">XP</div>
+          <div class="t"><b>+100 XP</b><span>per risposta corretta</span></div>
+        </div>
       </div>
+      <div class="img ph">IMMAGINE<br>MASCOTTE</div>
     </div>
-    <div class="img ph">IMMAGINE<br>MASCOTTE</div>
+    <button class="btn-lime start" id="btnInizia">Inizia ›</button>
   </div>
 
-  <!-- PROGRESSO -->
-  <div class="prog">
-    <span class="k">Progresso</span>
-    <div class="bar"><i id="progFill" style="width:20%"></i></div>
-    <span class="n"><span id="progNum">1</span>/5</span>
-    <span class="sep">·</span>
-    <span class="serie">Serie attuale <img src="assets/fuoco.png" alt=""> <b>3</b></span>
-  </div>
+  <!-- QUIZ -->
+  <div class="quizview" id="quizview" hidden>
+    <div class="prog">
+      <span class="k">Domanda</span>
+      <div class="bar"><i id="progFill" style="width:20%"></i></div>
+      <span class="n"><span id="progNum">1</span>/5</span>
+      <span class="sep">·</span>
+      <span class="serie">Serie <img src="assets/fuoco.png" alt=""> <b>3</b></span>
+    </div>
 
-  <!-- CARD DOMANDA -->
-  <div class="qbox">
-    <div class="qtext" id="qText"></div>
-    <div class="qimg ph">IMMAGINE<br>DOMANDA</div>
-    <div class="opzioni" id="opzioni"></div>
-  </div>
+    <div class="qcontent">
+      <div class="qimg ph">IMMAGINE<br>DOMANDA</div>
+      <div class="qtext" id="qText"></div>
+      <div class="opzioni" id="opzioni"></div>
+    </div>
 
-  <!-- BOTTONI -->
-  <div class="qnav">
-    <button class="btn-out" id="btnIndietro">‹ Indietro</button>
-    <button class="btn-lime" id="btnSucc">Successiva ›</button>
+    <div class="qnav">
+      <button class="btn-out" id="btnIndietro">‹ Indietro</button>
+      <button class="btn-lime" id="btnSucc">Successiva ›</button>
+    </div>
   </div>
 </div>
 
@@ -162,14 +167,15 @@
      opz:["L'ingresso ai box","La fine della gara","Pericolo in pista","La safety car"], giusta:1}
   ];
   var L=["A","B","C","D"], i=0, sel=[null,null,null,null,null];
-  var numDom=document.getElementById('numDom'), progFill=document.getElementById('progFill'),
-      progNum=document.getElementById('progNum'), qText=document.getElementById('qText'),
-      opzioni=document.getElementById('opzioni'), btnSucc=document.getElementById('btnSucc'),
-      btnIndietro=document.getElementById('btnIndietro');
+  var $=function(id){return document.getElementById(id);};
+  var intro=$('intro'), quizview=$('quizview'),
+      progFill=$('progFill'), progNum=$('progNum'), qText=$('qText'),
+      opzioni=$('opzioni'), btnSucc=$('btnSucc'), btnIndietro=$('btnIndietro'),
+      btnInizia=$('btnInizia'), btnEsci=$('btnEsci');
 
   function render(){
     var d=DOMANDE[i];
-    numDom.textContent=i+1; progNum.textContent=i+1;
+    progNum.textContent=i+1;
     progFill.style.width=((i+1)/DOMANDE.length*100)+'%';
     qText.textContent=d.q;
     opzioni.innerHTML='';
@@ -180,17 +186,21 @@
       el.addEventListener('click',function(){ sel[i]=k; render(); });
       opzioni.appendChild(el);
     });
-    btnSucc.textContent=(i===DOMANDE.length-1)?'Ricomincia ↻':'Successiva ›';
-    btnIndietro.textContent=(i===0)?'‹ Esci':'‹ Indietro';
+    btnSucc.textContent=(i===DOMANDE.length-1)?'Fine ✓':'Successiva ›';
+    btnIndietro.textContent='‹ Indietro';
+    btnIndietro.style.display=(i===0)?'none':'';
   }
+  btnInizia.addEventListener('click',function(){ intro.hidden=true; quizview.hidden=false; i=0; render(); });
   btnSucc.addEventListener('click',function(){
-    if(i<DOMANDE.length-1){ i++; } else { i=0; sel=[null,null,null,null,null]; }
-    render();
+    if(i<DOMANDE.length-1){ i++; render(); }
+    else { /* fine → torna all'intro */ quizview.hidden=true; intro.hidden=false; i=0; sel=[null,null,null,null,null]; }
   });
-  btnIndietro.addEventListener('click',function(){
-    if(i>0){ i--; render(); } else { location.href='index.html'; }
+  btnIndietro.addEventListener('click',function(){ if(i>0){ i--; render(); } });
+  // freccia in alto: se sei nel quiz torna all'intro, altrimenti alla home
+  btnEsci.addEventListener('click',function(){
+    if(!quizview.hidden){ quizview.hidden=true; intro.hidden=false; }
+    else { location.href='index.html'; }
   });
-  render();
 })();
 </script>
 </body>
