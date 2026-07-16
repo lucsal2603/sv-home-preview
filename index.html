@@ -214,11 +214,13 @@
     content:"";position:absolute;inset:0;z-index:-1;
     background:#0e1420;border-radius:28px 28px 0 0;
     box-shadow:0 -8px 24px rgba(0,0,0,.4);
-    /* tacca a "valle" morbida (spalle convesse) sottratta dal bordo alto */
-    --tacca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 40'%3E%3Cpath d='M0 0 L132 0 C110 0 88 40 66 40 C44 40 22 0 0 0 Z' fill='%23000'/%3E%3C/svg%3E");
-    -webkit-mask:var(--tacca) top center/132px 40px no-repeat, linear-gradient(#000,#000);
+    /* tacca: arco circolare TUTTO ATTORNO al FAB (cradle), con piccole spalle
+       convesse dove si ricongiunge al bordo piatto. Centro sul centro del FAB
+       (50% 16px), raggio 40 = FAB(32) + 8 di stacco → gira sotto senza toccarlo */
+    --tacca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 60'%3E%3Cpath d='M30 0 L120 0 Q113.7 0 113.7 6 A40 40 0 1 1 36.3 6 Q36.3 0 30 0 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask:var(--tacca) top center/150px 60px no-repeat, linear-gradient(#000,#000);
     -webkit-mask-composite:xor;
-    mask:var(--tacca) top center/132px 40px no-repeat, linear-gradient(#000,#000);
+    mask:var(--tacca) top center/150px 60px no-repeat, linear-gradient(#000,#000);
     mask-composite:exclude;
   }
   .fab{z-index:1001}
