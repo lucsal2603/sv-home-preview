@@ -214,8 +214,12 @@
     content:"";position:absolute;inset:0;z-index:-1;
     background:#0e1420;border-radius:28px 28px 0 0;
     box-shadow:0 -8px 24px rgba(0,0,0,.4);
-    -webkit-mask:radial-gradient(39px 39px at 50% 2px, #0000 38px, #000 39px);
-    mask:radial-gradient(39px 39px at 50% 2px, #0000 38px, #000 39px);
+    /* tacca a "valle" morbida (spalle convesse) sottratta dal bordo alto */
+    --tacca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 40'%3E%3Cpath d='M0 0 L132 0 C110 0 88 40 66 40 C44 40 22 0 0 0 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask:var(--tacca) top center/132px 40px no-repeat, linear-gradient(#000,#000);
+    -webkit-mask-composite:xor;
+    mask:var(--tacca) top center/132px 40px no-repeat, linear-gradient(#000,#000);
+    mask-composite:exclude;
   }
   .fab{z-index:1001}
   .nav a{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#8a92a4;text-decoration:none;flex:1}
