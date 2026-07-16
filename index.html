@@ -79,8 +79,11 @@
   .hero{
     position:relative;margin-top:20px;border-radius:24px;overflow:hidden;
     aspect-ratio:16/10;background:var(--card);
+    touch-action:pan-y;cursor:grab;
   }
-  .hero-track{display:flex;width:100%;height:100%;transition:transform .55s cubic-bezier(.65,0,.2,1);will-change:transform}
+  .hero.trascino{cursor:grabbing}
+  .hero-track{display:flex;width:100%;height:100%;transition:transform .55s cubic-bezier(.65,0,.2,1);will-change:transform;user-select:none}
+  .hero-track img,.hero-track .cont{pointer-events:none}
   .slide{position:relative;flex:0 0 100%;height:100%}
   .hero .ph{position:absolute;inset:0;font-size:12px;justify-content:flex-end;padding-right:26px}
   .hero .scrim{
@@ -399,14 +402,47 @@
   var dots=[].slice.call(hero.querySelectorAll('.dots i'));
   var n=dots.length, idx=0, DUR=5000, timer;
   hero.style.setProperty('--dot-dur', (DUR/1000)+'s');
+  function pos(i){ return -(i*100); }
   function show(i){
     idx=(i%n+n)%n;
-    track.style.transform='translateX(-'+(idx*100)+'%)';
+    track.style.transition='';
+    track.style.transform='translateX('+pos(idx)+'%)';
     dots.forEach(function(d,k){ d.classList.toggle('on', k===idx); });
   }
   function next(){ show(idx+1); }
   function play(){ clearInterval(timer); timer=setInterval(next, DUR); }
-  dots.forEach(function(d,k){ d.style.cursor='pointer'; d.addEventListener('click', function(){ show(k); play(); }); });
+  function stop(){ clearInterval(timer); }
+  dots.forEach(function(d,k){ d.style.cursor='pointer'; d.addEventListener('click', function(e){ e.stopPropagation(); show(k); play(); }); });
+
+  // ── swipe (trascinamento col dito/mouse) con loop ──
+  var startX=0, dragging=false, w=0, delta=0, moved=false;
+  function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
+  function down(e){
+    if(e.target.closest('.dots')) return;
+    dragging=true; moved=false; startX=getX(e); w=hero.clientWidth||1; delta=0;
+    stop(); track.style.transition='none'; hero.classList.add('trascino');
+  }
+  function move(e){
+    if(!dragging) return;
+    delta=getX(e)-startX;
+    if(Math.abs(delta)>4) moved=true;
+    track.style.transform='translateX(calc('+pos(idx)+'% + '+delta+'px))';
+  }
+  function up(){
+    if(!dragging) return; dragging=false; hero.classList.remove('trascino');
+    var th=w*0.16;
+    if(delta<=-th) show(idx+1);        // trascino a sinistra → slide dopo (loop)
+    else if(delta>=th) show(idx-1);    // trascino a destra → slide prima (loop)
+    else show(idx);
+    play();
+  }
+  hero.addEventListener('touchstart', down, {passive:true});
+  hero.addEventListener('touchmove', move, {passive:true});
+  hero.addEventListener('touchend', up);
+  hero.addEventListener('mousedown', down);
+  window.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', up);
+
   show(0); play();
 })();
 </script>
