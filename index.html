@@ -203,11 +203,19 @@
   /* ── BOTTOM NAV ───────────────────────── */
   .nav{
     position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-    width:100%;max-width:430px;height:84px;background:#0e1420;
-    border-top-left-radius:28px;border-top-right-radius:28px;
+    width:100%;max-width:430px;height:84px;background:transparent;
     display:flex;align-items:flex-start;justify-content:space-around;
-    padding-top:14px;box-shadow:0 -8px 24px rgba(0,0,0,.4);
+    padding-top:14px;
     z-index:1000; /* sempre sopra tutto: nulla si sovrappone al nav */
+  }
+  /* sfondo del nav con la TACCA (arco concavo) attorno al FAB: la mask
+     ritaglia un semicerchio dal bordo alto; il FAB resta fuori dal ritaglio */
+  .nav::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:#0e1420;border-radius:28px 28px 0 0;
+    box-shadow:0 -8px 24px rgba(0,0,0,.4);
+    -webkit-mask:radial-gradient(39px 39px at 50% 2px, #0000 38px, #000 39px);
+    mask:radial-gradient(39px 39px at 50% 2px, #0000 38px, #000 39px);
   }
   .fab{z-index:1001}
   .nav a{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#8a92a4;text-decoration:none;flex:1}
