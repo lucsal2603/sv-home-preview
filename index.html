@@ -414,34 +414,34 @@
   function stop(){ clearInterval(timer); }
   dots.forEach(function(d,k){ d.style.cursor='pointer'; d.addEventListener('click', function(e){ e.stopPropagation(); show(k); play(); }); });
 
-  // ── swipe (trascinamento col dito/mouse) con loop ──
-  var startX=0, dragging=false, w=0, delta=0, moved=false;
-  function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
-  function down(e){
+  // ── swipe con Pointer Events (touch + mouse), da QUALSIASI punto, con loop ──
+  var startX=0, startY=0, dragging=false, w=0, delta=0, decided=false, horiz=false;
+  hero.addEventListener('pointerdown', function(e){
     if(e.target.closest('.dots')) return;
-    dragging=true; moved=false; startX=getX(e); w=hero.clientWidth||1; delta=0;
+    dragging=true; decided=false; horiz=false;
+    startX=e.clientX; startY=e.clientY; w=hero.clientWidth||1; delta=0;
     stop(); track.style.transition='none'; hero.classList.add('trascino');
-  }
-  function move(e){
+    try{ hero.setPointerCapture(e.pointerId); }catch(_){}
+  });
+  hero.addEventListener('pointermove', function(e){
     if(!dragging) return;
-    delta=getX(e)-startX;
-    if(Math.abs(delta)>4) moved=true;
-    track.style.transform='translateX(calc('+pos(idx)+'% + '+delta+'px))';
-  }
-  function up(){
+    var dx=e.clientX-startX, dy=e.clientY-startY;
+    if(!decided && (Math.abs(dx)>6 || Math.abs(dy)>6)){ decided=true; horiz=Math.abs(dx)>Math.abs(dy); }
+    if(decided && horiz){
+      delta=dx;
+      track.style.transform='translateX(calc('+pos(idx)+'% + '+delta+'px))';
+    }
+  });
+  function end(){
     if(!dragging) return; dragging=false; hero.classList.remove('trascino');
-    var th=w*0.16;
-    if(delta<=-th) show(idx+1);        // trascino a sinistra → slide dopo (loop)
-    else if(delta>=th) show(idx-1);    // trascino a destra → slide prima (loop)
+    var th=w*0.15;
+    if(horiz && delta<=-th) show(idx+1);      // trascino a sinistra → slide dopo (loop)
+    else if(horiz && delta>=th) show(idx-1);  // trascino a destra → slide prima (loop)
     else show(idx);
     play();
   }
-  hero.addEventListener('touchstart', down, {passive:true});
-  hero.addEventListener('touchmove', move, {passive:true});
-  hero.addEventListener('touchend', up);
-  hero.addEventListener('mousedown', down);
-  window.addEventListener('mousemove', move);
-  window.addEventListener('mouseup', up);
+  hero.addEventListener('pointerup', end);
+  hero.addEventListener('pointercancel', end);
 
   show(0); play();
 })();
