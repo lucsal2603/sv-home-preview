@@ -42,10 +42,10 @@
   .xpbadge{width:44px;height:44px;border-radius:13px;background:linear-gradient(145deg,#8b5cf6,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;box-shadow:0 4px 14px #7c3aed66;flex-shrink:0}
   .qxp .t b{display:block;font-size:16px;font-weight:900}
   .qxp .t span{font-size:12px;color:var(--muto)}
-  /* immagine a SFONDO PIENO della card (copre tutto lo spazio) */
-  .qcard .img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:64% center}
-  /* velatura per rendere leggibile il testo a sinistra */
-  .qcard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(9,14,24,.97) 34%,rgba(9,14,24,.6) 60%,rgba(9,14,24,.05) 100%)}
+  /* immagine a SFONDO PIENO della card, spostata a destra (pilota al centro, in chiaro) */
+  .qcard .img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;transform:scale(1.34);transform-origin:left center}
+  /* velatura solo a sinistra per il testo; il pilota (destra) resta luminoso */
+  .qcard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(9,14,24,.95) 24%,rgba(9,14,24,.5) 42%,rgba(9,14,24,0) 60%)}
 
   /* ── QUIZ (domande, centrate, no scroll) ── */
   .quizview{flex:1;min-height:0;display:flex;flex-direction:column}
