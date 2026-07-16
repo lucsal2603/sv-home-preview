@@ -109,9 +109,12 @@
   }
   /* tutte le icone alla STESSA altezza e centrate (le immagini sono ritagliate
      al contenuto, quindi non "galleggiano" più a altezze diverse) */
-  .tile .art{width:100%;height:46px;display:flex;align-items:center;justify-content:center}
+  /* tutte allineate IN BASSO (la base è uguale per tutte); il pilota può
+     essere più grande e sporgere solo verso l'alto */
+  .tile .art{width:100%;height:46px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;overflow:visible}
   .tile .art img{height:34px;width:auto;max-width:100%;object-fit:contain}
-  .tile .art .ph{width:100%;height:44px;border-radius:9px;font-size:7px}
+  .tile .art img.pilota{height:48px}
+  .tile .art .ph{width:100%;height:34px;border-radius:9px;font-size:7px}
   .tile span{font-size:8px;font-weight:800;letter-spacing:-.3px;color:#cfd4de;text-transform:uppercase;white-space:nowrap}
 
   /* ── DUE CARD ─────────────────────────── */
@@ -145,8 +148,11 @@
   .sfida .vs{margin-top:auto}
   .sfida .cta{margin-top:0}
   .vs{display:flex;align-items:center;justify-content:center;gap:0;margin:0 0 8px}
-  .vs .pl{width:62px;height:62px;flex-shrink:0;border-radius:50%;overflow:hidden}
+  .vs .pl{width:62px;height:62px;flex-shrink:0;border-radius:50%;overflow:hidden;border:2px solid #ffffff22}
   .vs .pl .ph{width:100%;height:100%;border-radius:50%;font-size:8px}
+  .vs .pl img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .vs .pl-tu{background:radial-gradient(circle at 50% 32%,#f0524a,#8f1717)}
+  .vs .pl-riv{background:radial-gradient(circle at 50% 32%,#f7c948,#a06f00)}
   .vs .lg-img{width:54px;height:auto;margin:0 -12px;flex-shrink:0;position:relative;z-index:3;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
   .nomi{display:flex;justify-content:space-between;text-align:center;font-size:11px}
   .nomi .n{flex:1}
@@ -240,7 +246,7 @@
 
   <!-- ICONE -->
   <div class="sezione icone">
-    <div class="tile"><div class="art"><img src="assets/piloti.png" alt=""></div><span>Piloti</span></div>
+    <div class="tile"><div class="art"><img class="pilota" src="assets/piloti.png" alt=""></div><span>Piloti</span></div>
     <div class="tile"><div class="art"><img src="assets/scuderie.png" alt=""></div><span>Scuderie</span></div>
     <div class="tile"><div class="art"><img src="assets/circuiti.png" alt=""></div><span>Circuiti</span></div>
     <div class="tile"><div class="art"><img src="assets/classifiche.png" alt=""></div><span>Classifiche</span></div>
@@ -269,9 +275,9 @@
       </div>
       <div class="c-sub">Sfida un amico e dimostra chi è il top!</div>
       <div class="vs">
-        <div class="pl"><div class="ph">TU</div></div>
+        <div class="pl pl-tu"><img src="assets/avatar1.png" alt=""></div>
         <img class="lg-img" src="assets/vs.png" alt="VS">
-        <div class="pl"><div class="ph">RIV</div></div>
+        <div class="pl pl-riv"><img src="assets/avatar2.png" alt=""></div>
       </div>
       <div class="nomi">
         <div class="n"><b>TU</b><span>2.450 XP</span></div>
