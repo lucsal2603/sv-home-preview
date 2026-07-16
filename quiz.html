@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Sector Vault — Quiz del giorno</title>
+<style>
+  :root{
+    --sfondo:#080b11;--card:#121826;--tile:#141a27;--lime:#c8f500;
+    --testo:#fff;--muto:#8b93a6;--muto-2:#6b7285;--rosso:#ff3838;--bordo:#232b3b;--ph:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:#000}
+  body{font-family:-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--testo);display:flex;justify-content:center}
+  .phone{width:100%;max-width:430px;min-height:100vh;background:var(--sfondo);position:relative;padding:0 0 100px;overflow-x:hidden}
+  .ph{background:var(--ph);display:flex;align-items:center;justify-content:center;color:#9aa1ad;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-align:center;line-height:1.2}
+  .wrap{padding:0 16px}
+
+  /* HEADER */
+  .qhead{display:flex;align-items:center;justify-content:space-between;padding:18px 14px 0}
+  .qhead-l{display:flex;align-items:center;gap:12px}
+  .back{width:30px;height:30px;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none}
+  .back svg{width:26px;height:26px}
+  .qtitle{font-weight:900;font-size:21px;letter-spacing:.5px}
+  .header-dx{display:flex;align-items:center;gap:16px}
+  .bell{position:relative;width:26px;height:26px;color:#e7e9ee}
+  .bell .badge{position:absolute;top:-6px;right:-7px;background:var(--rosso);color:#fff;font-size:11px;font-weight:800;min-width:19px;height:19px;border-radius:10px;display:flex;align-items:center;justify-content:center;border:2px solid var(--sfondo)}
+  .avatar{position:relative;width:48px;height:48px}
+  .avatar .ring{position:absolute;inset:0;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,var(--lime),#7bd000,var(--lime))}
+  .avatar-img{position:absolute;top:3px;left:3px;width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center top;background:radial-gradient(circle at 50% 32%,#f0524a,#8f1717)}
+  .avatar .lvl{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:var(--lime);color:#0b0e13;font-size:11px;font-weight:900;padding:1px 7px;border-radius:9px;border:2px solid var(--sfondo)}
+
+  /* CARD QUIZ IN ALTO */
+  .qcard{position:relative;overflow:hidden;margin:16px 16px 0;border-radius:22px;background:linear-gradient(135deg,#16223a,#0e1524);border:1px solid var(--bordo);display:flex;min-height:200px}
+  .qcard .txt{position:relative;z-index:2;padding:20px 18px;flex:1}
+  .qkick{font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#37e0c8}
+  .qbig{margin-top:8px;font-size:28px;font-weight:900;line-height:1.02;letter-spacing:-.5px}
+  .qbig b{color:var(--lime)}
+  .qsub{margin-top:8px;font-size:14px;color:#d6dbe8;font-weight:600}
+  .qxp{margin-top:18px;display:flex;align-items:center;gap:11px}
+  .xpbadge{width:44px;height:44px;border-radius:13px;background:linear-gradient(145deg,#8b5cf6,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;box-shadow:0 4px 14px #7c3aed66;flex-shrink:0}
+  .qxp .t b{display:block;font-size:16px;font-weight:900}
+  .qxp .t span{font-size:12px;color:var(--muto)}
+  .qcard .img{position:absolute;right:0;top:0;bottom:0;width:48%;font-size:11px}
+
+  /* PROGRESSO */
+  .prog{margin:18px 16px 0;display:flex;align-items:center;gap:10px}
+  .prog .k{font-size:12px;font-weight:900;letter-spacing:.5px;color:#37e0c8;text-transform:uppercase}
+  .prog .bar{flex:1;height:9px;border-radius:6px;background:#1c2434;overflow:hidden}
+  .prog .bar i{display:block;height:100%;background:var(--lime);border-radius:6px;transition:width .35s ease}
+  .prog .n{font-size:13px;font-weight:800;color:#cfd4de}
+  .prog .sep{color:#33405a}
+  .prog .serie{font-size:11px;font-weight:800;letter-spacing:.4px;color:var(--muto);text-transform:uppercase;display:flex;align-items:center;gap:5px}
+  .prog .serie b{color:var(--rosso);font-size:14px}
+
+  /* CARD DOMANDA */
+  .qbox{margin:16px 16px 0;background:var(--card);border:1px solid var(--bordo);border-radius:22px;padding:20px 18px}
+  .qtext{font-size:19px;font-weight:800;line-height:1.28}
+  .qimg{margin-top:16px;width:100%;aspect-ratio:16/9;border-radius:16px}
+  .opzioni{margin-top:16px;display:flex;flex-direction:column;gap:11px}
+  .opz{display:flex;align-items:center;gap:14px;background:#0f1420;border:1.5px solid #26304400;box-shadow:inset 0 0 0 1.5px #2a3448;border-radius:16px;padding:13px 15px;cursor:pointer;transition:box-shadow .15s}
+  .opz .lett{width:34px;height:34px;border-radius:50%;border:2px solid #414d66;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#cfd4de;flex-shrink:0}
+  .opz .txt{font-size:16px;font-weight:600}
+  .opz.scelta{box-shadow:inset 0 0 0 2px var(--lime)}
+  .opz.scelta .lett{background:var(--lime);border-color:var(--lime);color:#0b0e13}
+
+  /* BOTTONI */
+  .qnav{margin:20px 16px 0;display:flex;gap:12px}
+  .btn-out{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid #2c3648;color:#cfd4de;font-weight:800;font-size:13px;letter-spacing:.4px;text-transform:uppercase;padding:14px 20px;border-radius:26px;cursor:pointer}
+  .btn-lime{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--lime);color:#0b0e13;font-weight:900;font-size:14px;letter-spacing:.4px;text-transform:uppercase;padding:15px 20px;border-radius:26px;border:none;cursor:pointer}
+
+  /* NAV (uguale alla home) */
+  .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:84px;background:transparent;display:flex;align-items:flex-start;justify-content:space-around;padding-top:14px;z-index:1000}
+  .nav::before{content:"";position:absolute;inset:0;z-index:-1;background:#0e1420;border-radius:28px 28px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.4);
+    --tacca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 60'%3E%3Cpath d='M30 0 L120 0 Q113.7 0 113.7 6 A40 40 0 1 1 36.3 6 Q36.3 0 30 0 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask:var(--tacca) top center/150px 60px no-repeat, linear-gradient(#000,#000);-webkit-mask-composite:xor;
+    mask:var(--tacca) top center/150px 60px no-repeat, linear-gradient(#000,#000);mask-composite:exclude}
+  .nav a{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#8a92a4;text-decoration:none;flex:1}
+  .nav a.on{color:var(--lime)}
+  .nav a .nav-ico{width:27px;height:27px;object-fit:contain}
+  .fab{margin-top:-30px;width:64px;height:64px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px #c8f50066;z-index:1001}
+  .fab img{width:38px;height:38px;object-fit:contain}
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <!-- HEADER -->
+  <div class="qhead">
+    <div class="qhead-l">
+      <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <div class="qtitle">QUIZ DEL GIORNO</div>
+    </div>
+    <div class="header-dx">
+      <div class="bell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        <span class="badge">3</span>
+      </div>
+      <div class="avatar"><div class="ring"></div><img class="avatar-img" src="assets/avatar1.png" alt=""><span class="lvl">12</span></div>
+    </div>
+  </div>
+
+  <!-- CARD QUIZ -->
+  <div class="qcard">
+    <div class="txt">
+      <div class="qkick">DOMANDA <span id="numDom">1</span>/5</div>
+      <div class="qbig">Quanto ne sai<br>sulla <b>F1</b>?</div>
+      <div class="qsub">Rispondi e guadagna XP!</div>
+      <div class="qxp">
+        <div class="xpbadge">XP</div>
+        <div class="t"><b>+100 XP</b><span>per risposta corretta</span></div>
+      </div>
+    </div>
+    <div class="img ph">IMMAGINE<br>MASCOTTE</div>
+  </div>
+
+  <!-- PROGRESSO -->
+  <div class="prog">
+    <span class="k">Progresso</span>
+    <div class="bar"><i id="progFill" style="width:20%"></i></div>
+    <span class="n"><span id="progNum">1</span>/5</span>
+    <span class="sep">·</span>
+    <span class="serie">Serie attuale 🔥 <b>3</b></span>
+  </div>
+
+  <!-- CARD DOMANDA -->
+  <div class="qbox">
+    <div class="qtext" id="qText"></div>
+    <div class="qimg ph">IMMAGINE<br>DOMANDA</div>
+    <div class="opzioni" id="opzioni"></div>
+  </div>
+
+  <!-- BOTTONI -->
+  <div class="qnav">
+    <button class="btn-out" id="btnIndietro">‹ Indietro</button>
+    <button class="btn-lime" id="btnSucc">Successiva ›</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <a class="on" href="index.html"><img class="nav-ico" src="assets/home.png" alt="">Home</a>
+  <a href="index.html"><img class="nav-ico" src="assets/esplora.png" alt="">Esplora</a>
+  <a href="#"><div class="fab"><img src="assets/bandiera.png" alt=""></div></a>
+  <a href="index.html"><img class="nav-ico" src="assets/garage.png" alt="">Garage</a>
+  <a href="index.html"><img class="nav-ico" src="assets/profilo.png" alt="">Profilo</a>
+</div>
+
+<script>
+(function(){
+  var DOMANDE=[
+    {q:"Quale pilota ha vinto il primo campionato del mondo di Formula 1 nel 1950?",
+     opz:["Juan Manuel Fangio","Alberto Ascari","Nino Farina","Stirling Moss"], giusta:2},
+    {q:"Quale scuderia ha vinto più titoli costruttori nella storia della F1?",
+     opz:["Mercedes","Ferrari","McLaren","Red Bull"], giusta:1},
+    {q:"In quale città si corre lo storico Gran Premio di Monaco?",
+     opz:["Montecarlo","Nizza","Cannes","Marsiglia"], giusta:0},
+    {q:"Chi ha vinto il Campionato del Mondo Piloti nel 2021?",
+     opz:["Lewis Hamilton","Charles Leclerc","Valtteri Bottas","Max Verstappen"], giusta:3},
+    {q:"Cosa indica la bandiera a scacchi in Formula 1?",
+     opz:["L'ingresso ai box","La fine della gara","Pericolo in pista","La safety car"], giusta:1}
+  ];
+  var L=["A","B","C","D"], i=0, sel=[null,null,null,null,null];
+  var numDom=document.getElementById('numDom'), progFill=document.getElementById('progFill'),
+      progNum=document.getElementById('progNum'), qText=document.getElementById('qText'),
+      opzioni=document.getElementById('opzioni'), btnSucc=document.getElementById('btnSucc'),
+      btnIndietro=document.getElementById('btnIndietro');
+
+  function render(){
+    var d=DOMANDE[i];
+    numDom.textContent=i+1; progNum.textContent=i+1;
+    progFill.style.width=((i+1)/DOMANDE.length*100)+'%';
+    qText.textContent=d.q;
+    opzioni.innerHTML='';
+    d.opz.forEach(function(t,k){
+      var el=document.createElement('div');
+      el.className='opz'+(sel[i]===k?' scelta':'');
+      el.innerHTML='<span class="lett">'+L[k]+'</span><span class="txt">'+t+'</span>';
+      el.addEventListener('click',function(){ sel[i]=k; render(); });
+      opzioni.appendChild(el);
+    });
+    btnSucc.textContent=(i===DOMANDE.length-1)?'Ricomincia ↻':'Successiva ›';
+    btnIndietro.textContent=(i===0)?'‹ Esci':'‹ Indietro';
+  }
+  btnSucc.addEventListener('click',function(){
+    if(i<DOMANDE.length-1){ i++; } else { i=0; sel=[null,null,null,null,null]; }
+    render();
+  });
+  btnIndietro.addEventListener('click',function(){
+    if(i>0){ i--; render(); } else { location.href='index.html'; }
+  });
+  render();
+})();
+</script>
+</body>
+</html>
