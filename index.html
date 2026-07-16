@@ -68,6 +68,7 @@
     background:conic-gradient(from 210deg,var(--lime),#7bd000,var(--lime));
   }
   .avatar .ph{width:100%;height:100%;border-radius:50%;font-size:8px}
+  .avatar-img{position:absolute;top:3px;left:3px;width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center top;background:radial-gradient(circle at 50% 32%,#f0524a,#8f1717)}
   .avatar .lvl{
     position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);
     background:var(--lime);color:#0b0e13;font-size:11px;font-weight:900;
@@ -224,7 +225,7 @@
       </div>
       <div class="avatar">
         <div class="ring"></div>
-        <div class="ph" style="position:absolute;inset:3px">IMG</div>
+        <img class="avatar-img" src="assets/avatar1.png" alt="">
         <span class="lvl">12</span>
       </div>
     </div>
