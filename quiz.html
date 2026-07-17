@@ -39,7 +39,7 @@
   .qbig b{color:var(--lime)}
   .qsub{margin-top:8px;font-size:14px;color:#d6dbe8;font-weight:600}
   .qxp{margin-top:18px;display:flex;align-items:center;gap:11px}
-  .xpbadge{width:44px;height:44px;border-radius:13px;background:linear-gradient(145deg,#8b5cf6,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;box-shadow:0 4px 14px #7c3aed66;flex-shrink:0}
+  .xpbadge{width:48px;height:48px;object-fit:contain;flex-shrink:0}
   .qxp .t b{display:block;font-size:16px;font-weight:900}
   .qxp .t span{font-size:12px;color:var(--muto)}
   /* immagine nella META' DESTRA: la copre tutta e il personaggio ci sta INTERO
@@ -127,10 +127,10 @@
   .rrow .q b{color:#fff;font-weight:800}
   .rrow .xp{font-size:12px;font-weight:900;color:var(--lime);white-space:nowrap}
   .rrow.ko .xp{color:var(--muto-2)}
-  .xp-mini{width:32px;height:32px;border-radius:9px;background:linear-gradient(145deg,#8b5cf6,#5b21b6);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+  .xp-mini{width:34px;height:34px;object-fit:contain;flex-shrink:0}
 
   .rchest{margin-top:16px;display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--bordo);border-radius:20px;padding:16px}
-  .rchest .box{width:64px;height:64px;border-radius:14px;flex-shrink:0;font-size:8px}
+  .rchest .box{width:66px;height:66px;object-fit:contain;flex-shrink:0}
   .rchest h4{font-size:15px;font-weight:900}
   .rchest p{font-size:12.5px;color:var(--muto);margin-top:2px;line-height:1.25}
   .rchest .pb{margin-top:8px;height:8px;border-radius:5px;background:#1c2434;overflow:hidden}
@@ -181,7 +181,7 @@
         <div class="qbig">Quanto ne sai sulla <b>F1</b>?</div>
         <div class="qsub">5 domande sulla Formula 1</div>
         <div class="qxp">
-          <div class="xpbadge">XP</div>
+          <img class="xpbadge" src="assets/xp.png" alt="XP">
           <div class="t"><b>+100 XP</b><span>per risposta corretta</span></div>
         </div>
       </div>
@@ -220,7 +220,7 @@
         <div class="rok" id="rSub">Ottimo lavoro!</div>
         <div class="rdesc">Hai dimostrato di conoscere la Formula 1!</div>
         <div class="qxp">
-          <div class="xpbadge">XP</div>
+          <img class="xpbadge" src="assets/xp.png" alt="XP">
           <div class="t"><b id="rXp">+250 XP</b><span>guadagnati</span></div>
         </div>
       </div>
@@ -256,7 +256,7 @@
     </div>
 
     <div class="rchest">
-      <div class="box ph">FORZIERE</div>
+      <img class="box" src="assets/xp.png" alt="XP">
       <div style="flex:1;min-width:0">
         <h4>Ritorna domani per un nuovo quiz</h4>
         <p>Nuove domande, nuove sfide, nuovi XP!</p>
@@ -378,7 +378,7 @@
       row.innerHTML='<span class="chk">'+(ok?CHECK:CROSS)+'</span>'+
         '<span class="q"><b>'+(k+1)+'.</b> '+d.q+'</span>'+
         '<span class="xp">'+(ok?'+50 XP':'+0 XP')+'</span>'+
-        '<span class="xp-mini">XP</span>';
+        '<img class="xp-mini" src="assets/xp.png" alt="XP">';
       rr.appendChild(row);
     });
     quizview.hidden=true; resultview.hidden=false; phone.classList.add('mode-result');
