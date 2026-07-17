@@ -214,18 +214,12 @@
   }
   /* sfondo del nav con la TACCA (arco concavo) attorno al FAB: la mask
      ritaglia un semicerchio dal bordo alto; il FAB resta fuori dal ritaglio */
+  /* barra pulita: il FAB ora è alla stessa altezza delle altre icone,
+     quindi niente tacca (l'arco serviva solo col FAB sollevato) */
   .nav::before{
     content:"";position:absolute;inset:0;z-index:-1;
     background:#0e1420;border-radius:28px 28px 0 0;
     box-shadow:0 -8px 24px rgba(0,0,0,.4);
-    /* tacca: arco circolare TUTTO ATTORNO al FAB (cradle), con piccole spalle
-       convesse dove si ricongiunge al bordo piatto. Centro sul centro del FAB
-       (50% 16px), raggio 40 = FAB(32) + 8 di stacco → gira sotto senza toccarlo */
-    --tacca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 60'%3E%3Cpath d='M30 0 L120 0 Q113.7 0 113.7 6 A40 40 0 1 1 36.3 6 Q36.3 0 30 0 Z' fill='%23000'/%3E%3C/svg%3E");
-    -webkit-mask:var(--tacca) top center/150px 60px no-repeat, linear-gradient(#000,#000);
-    -webkit-mask-composite:xor;
-    mask:var(--tacca) top center/150px 60px no-repeat, linear-gradient(#000,#000);
-    mask-composite:exclude;
   }
   .fab{z-index:1001}
   .nav a{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#8a92a4;text-decoration:none;flex:1}
@@ -233,11 +227,11 @@
   .nav svg{width:25px;height:25px}
   .nav a .nav-ico{width:27px;height:27px;object-fit:contain}
   .fab{
-    margin-top:-30px;width:64px;height:64px;border-radius:50%;background:var(--lime);
-    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px #c8f50066;
+    margin-top:-12px;width:52px;height:52px;border-radius:50%;background:var(--lime);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px #c8f50055;
     border:3px solid rgba(255,255,255,.9);
   }
-  .fab img{width:38px;height:38px;object-fit:contain}
+  .fab img{width:30px;height:30px;object-fit:contain}
 </style>
 </head>
 <body>
