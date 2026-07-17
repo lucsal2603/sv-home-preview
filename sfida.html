@@ -112,6 +112,32 @@
   .cl .p{font-size:15px;font-weight:900}
   .cl.io .p{color:var(--lime)}
 
+  /* ── MODALE "COME FUNZIONA" ── */
+  .modale{position:fixed;inset:0;z-index:2000;background:rgba(4,6,10,.78);backdrop-filter:blur(3px);display:flex;justify-content:center;overflow-y:auto;padding:12px}
+  .mod-card{width:100%;max-width:404px;height:max-content;margin:auto;background:#0c111c;border:1px solid #2a2145;border-radius:22px;overflow:hidden;position:relative}
+  .chiudi{position:absolute;top:12px;right:12px;z-index:5;width:36px;height:36px;border-radius:50%;background:#2a1f52;border:1.5px solid #6f4fd0;color:#fff;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .mod-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#3a1f6b,#1a1136);padding:20px 16px 18px;min-height:150px}
+  .mod-hero h2{position:relative;z-index:2;font-size:21px;font-weight:900;font-style:italic;letter-spacing:-.5px;max-width:56%}
+  .mod-hero p{position:relative;z-index:2;margin-top:8px;font-size:12px;color:#d6dbe8;font-weight:600;line-height:1.3;max-width:54%}
+  .mod-hero .img{position:absolute;right:0;top:0;bottom:0;width:44%;font-size:9px}
+  .mod-hero::after{content:"";position:absolute;top:0;bottom:0;left:42%;width:14%;z-index:1;background:linear-gradient(90deg,#241548,rgba(36,21,72,0))}
+
+  .passo{display:flex;align-items:center;gap:10px;background:#0f1420;border:1px solid #232b3b;border-radius:16px;padding:12px;margin:10px 12px}
+  .passo.col{flex-direction:column;align-items:stretch}
+  .num{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--viola);color:var(--viola);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;align-self:flex-start}
+  .p-txt{flex:1;min-width:0}
+  .p-txt h3{font-size:13.5px;font-weight:900;color:var(--viola);text-transform:uppercase;letter-spacing:.3px}
+  .p-txt p{margin-top:5px;font-size:12px;color:#cfd4de;line-height:1.35}
+  .p-img{width:38%;max-width:148px;object-fit:contain;flex-shrink:0}
+  .passo-top{display:flex;gap:10px;align-items:flex-start}
+
+  .curio{flex:1;min-width:0;position:relative;overflow:hidden;background:linear-gradient(135deg,#2a1b52,#171029);border:1.5px solid #6f4fd0;border-radius:12px;padding:10px 11px;min-height:96px}
+  .curio .lv{font-size:12px;font-weight:900;color:var(--viola);letter-spacing:.3px}
+  .curio .sap{margin-top:5px;font-size:11.5px;font-weight:800;color:#ffd23e;display:flex;align-items:center;gap:4px}
+  .curio .tx{margin-top:3px;font-size:11px;color:#d6dbe8;line-height:1.32;max-width:74%;position:relative;z-index:2}
+  .curio img{position:absolute;right:-10px;bottom:-4px;width:58%;object-fit:contain;z-index:1}
+  .got{margin:12px;width:calc(100% - 24px);font-size:15px;padding:15px}
+
   /* NAV */
   .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:84px;background:transparent;display:flex;align-items:flex-start;justify-content:space-around;padding-top:14px;z-index:1000}
   .nav::before{content:"";position:absolute;inset:0;z-index:-1;background:#0e1420;border-radius:28px 28px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.4);
@@ -153,7 +179,7 @@
     </div>
     <div class="img ph">IMMAGINE<br>SFIDA</div>
     <div class="hero-btns">
-      <button class="btn-viola">Come funziona <span class="q">?</span></button>
+      <button class="btn-viola" id="btnComeFunziona">Come funziona <span class="q">?</span></button>
       <button class="btn-lime">Invita un amico
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M18 8v6M21 11h-6"/></svg>
       </button>
@@ -234,6 +260,87 @@
   </div>
 </div>
 
+<!-- MODALE COME FUNZIONA -->
+<div class="modale" id="modale" hidden>
+  <div class="mod-card">
+    <button class="chiudi" id="chiudi" aria-label="Chiudi">✕</button>
+
+    <div class="mod-hero">
+      <div class="img ph">IMMAGINE<br>MASCOTTE</div>
+      <h2>COME FUNZIONA</h2>
+      <p>Tutto quello che devi sapere sulla Sfida Settimanale!</p>
+    </div>
+
+    <div class="passo">
+      <span class="num">1</span>
+      <div class="p-txt">
+        <h3>Sfida i tuoi amici</h3>
+        <p>Ogni settimana affronta un amico in una sfida a XP.<br>Vinci e guadagna XP!</p>
+      </div>
+      <img class="p-img" src="assets/cf-vs.png" alt="">
+    </div>
+
+    <div class="passo">
+      <span class="num">2</span>
+      <div class="p-txt">
+        <h3>Ottieni XP</h3>
+        <p>Completa le sfide giornaliere e vinci la sfida settimanale per guadagnare XP.</p>
+      </div>
+      <img class="p-img" src="assets/cf-xp.png" alt="">
+    </div>
+
+    <div class="passo">
+      <span class="num">3</span>
+      <div class="p-txt">
+        <h3>Sali di livello</h3>
+        <p>Raccogli XP per salire di livello e sbloccare nuove ricompense.</p>
+      </div>
+      <img class="p-img" src="assets/cf-livello.png" alt="">
+    </div>
+
+    <div class="passo col">
+      <div class="passo-top">
+        <span class="num">4</span>
+        <div class="p-txt">
+          <h3>Sblocca ricompense</h3>
+          <p>Ogni livello raggiunto ti fa ottenere fantastiche ricompense.</p>
+        </div>
+      </div>
+      <div class="track" style="margin:14px 6px 12px">
+        <div class="fill"></div>
+        <div class="nodo ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+        <div class="nodo ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+        <div class="nodo now"></div>
+        <div class="nodo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <div class="nodo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+      </div>
+      <div class="prem">
+        <div class="card-p"><span class="q">500 XP</span><div class="ico"><img src="assets/xp.png" alt=""></div><span class="st">Raggiunta</span></div>
+        <div class="card-p"><span class="q">1.500 XP</span><div class="ico"><img src="assets/moneta.png" alt=""></div><span class="st">Raggiunta</span></div>
+        <div class="card-p now"><span class="q">2.500 XP</span><div class="ico"><img src="assets/xp.png" alt=""></div><span class="st">Prossimo</span></div>
+        <div class="card-p"><span class="q">5.000 XP</span><div class="ico"><img src="assets/moneta.png" alt=""></div><span class="st">Bloccata</span></div>
+        <div class="card-p"><span class="q">7.500 XP</span><div class="ico"><img src="assets/monete.png" alt=""></div><span class="st">Bloccata</span></div>
+      </div>
+    </div>
+
+    <div class="passo">
+      <span class="num">5</span>
+      <div class="p-txt">
+        <h3>Scopri curiosità sulla F1</h3>
+        <p>Ad ogni nuovo livello scoprirai una curiosità unica sul mondo della Formula 1!</p>
+      </div>
+      <div class="curio">
+        <div class="lv">LIVELLO 12</div>
+        <div class="sap">💡 Lo sapevi?</div>
+        <div class="tx">Ayrton Senna ha vinto 6 volte il Gran Premio di Monaco.</div>
+        <img src="assets/cf-auto.png" alt="">
+      </div>
+    </div>
+
+    <button class="btn-lime got" id="gotit">Got it!</button>
+  </div>
+</div>
+
 <!-- NAV -->
 <div class="nav">
   <a href="index.html"><img class="nav-ico" src="assets/home.png" alt="">Home</a>
@@ -242,5 +349,19 @@
   <a href="index.html"><img class="nav-ico" src="assets/garage.png" alt="">Garage</a>
   <a href="index.html"><img class="nav-ico" src="assets/profilo.png" alt="">Profilo</a>
 </div>
+
+<script>
+(function(){
+  var m=document.getElementById('modale');
+  function apri(){ m.hidden=false; document.body.style.overflow='hidden'; m.scrollTop=0; }
+  function chiudi(){ m.hidden=true; document.body.style.overflow=''; }
+  document.getElementById('btnComeFunziona').addEventListener('click', apri);
+  document.getElementById('chiudi').addEventListener('click', chiudi);
+  document.getElementById('gotit').addEventListener('click', chiudi);
+  // clic sullo sfondo scuro = chiudi
+  m.addEventListener('click', function(e){ if(e.target===m) chiudi(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !m.hidden) chiudi(); });
+})();
+</script>
 </body>
 </html>
