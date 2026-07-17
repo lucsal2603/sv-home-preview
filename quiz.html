@@ -106,6 +106,16 @@
   .rmsg .star svg{width:26px;height:26px}
   .rmsg b{display:block;font-size:15px;font-weight:900;color:#ffd23e}
   .rmsg span{font-size:13px;color:#cfd4de}
+  /* colore dell'esito: verde (bene) / giallo (medio) / rosso (male) */
+  .rmsg.verde .star,.rmsg.verde b{color:#3ddc84}
+  .rmsg.verde .star{background:#12301f}
+  .rmsg.giallo .star,.rmsg.giallo b{color:#ffd23e}
+  .rmsg.giallo .star{background:#2e2716}
+  .rmsg.rosso .star,.rmsg.rosso b{color:#ff5a5a}
+  .rmsg.rosso .star{background:#331717}
+  .rcircle.verde{border-color:#3ddc84}
+  .rcircle.giallo{border-color:#ffd23e}
+  .rcircle.rosso{border-color:#ff5a5a}
 
   .rrow{display:flex;align-items:center;gap:11px;background:#0f1420;border:1px solid var(--bordo);border-radius:14px;padding:11px 13px;margin-bottom:9px}
   .rrow .chk{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:2px solid var(--lime);color:var(--lime)}
@@ -328,6 +338,16 @@
   $('btnSfida').addEventListener('click',function(){ location.href='index.html'; });
 
   // ── schermata risultato (calcolata su risposte giuste/sbagliate + tempo) ──
+  // esito per numero di risposte giuste (0..5): frase + colore
+  var ESITI=[
+    {sub:"Ci riproviamo?",          t:"Ahia, zero!",        d:"Nessuna risposta giusta. Domani ti rifai!",              c:"rosso"},
+    {sub:"Non mollare!",            t:"Giornata storta",    d:"Solo 1 risposta giusta su 5. Ripassa e riprova.",         c:"rosso"},
+    {sub:"Continua ad allenarti!",  t:"Puoi fare di più",   d:"2 risposte giuste su 5: sei a metà strada.",              c:"giallo"},
+    {sub:"Niente male!",            t:"Bel lavoro!",        d:"3 risposte giuste su 5: più della metà.",                 c:"giallo"},
+    {sub:"Ottimo lavoro!",          t:"Quasi perfetto!",    d:"4 su 5: ti è sfuggita solo una domanda.",                 c:"verde"},
+    {sub:"Sei un fenomeno!",        t:"Serie perfetta!",    d:"Hai risposto correttamente a tutte le domande.",          c:"verde"}
+  ];
+  var COL={verde:"#3ddc84",giallo:"#ffd23e",rosso:"#ff5a5a"};
   var CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
   var CROSS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
   function mostraRisultato(){
@@ -338,10 +358,15 @@
     $('rPrec').textContent=Math.round(corrette/tot*100)+'%';
     $('rTime').textContent=fmt(Date.now()-tStart);
     $('rXp').textContent='+'+xp+' XP';
-    $('rSub').textContent=perfetto?'Ottimo lavoro!':(corrette>=3?'Bel lavoro!':'Continua ad allenarti!');
+    // frase + colore in base a quante ne hai indovinate (0..5)
+    var e=ESITI[Math.max(0,Math.min(ESITI.length-1,corrette))];
+    $('rSub').textContent=e.sub;
+    $('rSub').style.color=COL[e.c];
     var m=$('rMsg');
-    if(perfetto){ m.querySelector('b').textContent='Serie perfetta!'; m.querySelector('span').textContent='Hai risposto correttamente a tutte le domande.'; }
-    else { m.querySelector('b').textContent='Bel tentativo!'; m.querySelector('span').textContent='Hai risposto correttamente a '+corrette+' domande su '+tot+'.'; }
+    m.className='rmsg '+e.c;
+    m.querySelector('b').textContent=e.t;
+    m.querySelector('span').textContent=e.d;
+    document.querySelector('.rcircle').className='rcircle '+e.c;
     var rr=$('rRiepilogo'); rr.innerHTML='';
     DOMANDE.forEach(function(d,k){
       var ok=(sel[k]===d.giusta);
