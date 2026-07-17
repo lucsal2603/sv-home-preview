@@ -74,7 +74,9 @@
   .qnav{margin:14px 16px 0;display:flex;gap:12px;flex-shrink:0}
   .intro .start{width:100%;flex:0 0 auto;font-size:16px;padding:17px 20px}
   .btn-out{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid #2c3648;color:#cfd4de;font-weight:800;font-size:13px;letter-spacing:.4px;text-transform:uppercase;padding:14px 18px;border-radius:26px;cursor:pointer}
-  .btn-lime{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--lime);color:#0b0e13;font-weight:900;font-size:15px;letter-spacing:.4px;text-transform:uppercase;padding:16px 20px;border-radius:26px;border:none;cursor:pointer}
+  .btn-lime{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--lime);color:#0b0e13;font-weight:900;font-size:15px;letter-spacing:.4px;text-transform:uppercase;padding:16px 20px;border-radius:26px;border:none;cursor:pointer;transition:background .15s,color .15s}
+  /* senza risposta scelta: grigio e non cliccabile */
+  .btn-lime:disabled{background:#212b3d;color:#5d677e;box-shadow:none;cursor:not-allowed}
 
   /* ── SCHERMATA RISULTATO (scrollabile) ── */
   .phone.mode-result{height:auto;min-height:100dvh;overflow:visible;display:block}
@@ -307,6 +309,7 @@
       opzioni.appendChild(el);
     });
     btnSucc.textContent=(i===DOMANDE.length-1)?'Fine ✓':'Successiva ›';
+    btnSucc.disabled=(sel[i]===null);   // avanti solo dopo aver scelto
     btnIndietro.textContent='‹ Indietro';
     btnIndietro.style.display=(i===0)?'none':'';
   }
