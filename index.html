@@ -214,12 +214,14 @@
   }
   /* sfondo del nav con la TACCA (arco concavo) attorno al FAB: la mask
      ritaglia un semicerchio dal bordo alto; il FAB resta fuori dal ritaglio */
-  /* barra pulita: il FAB ora è alla stessa altezza delle altre icone,
-     quindi niente tacca (l'arco serviva solo col FAB sollevato) */
+  /* barra col bordo che gira ATTORNO al pulsante centrale: ritaglio un cerchio
+     centrato sul FAB (50% 28px), raggio 37 = FAB(32 col bordo) + 5 di stacco */
   .nav::before{
     content:"";position:absolute;inset:0;z-index:-1;
     background:#0e1420;border-radius:28px 28px 0 0;
     box-shadow:0 -8px 24px rgba(0,0,0,.4);
+    -webkit-mask:radial-gradient(37px 37px at 50% 28px, #0000 36px, #000 37px);
+    mask:radial-gradient(37px 37px at 50% 28px, #0000 36px, #000 37px);
   }
   .fab{z-index:1001}
   .nav a{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#8a92a4;text-decoration:none;flex:1}
@@ -227,11 +229,11 @@
   .nav svg{width:25px;height:25px}
   .nav a .nav-ico{width:27px;height:27px;object-fit:contain}
   .fab{
-    margin-top:-12px;width:52px;height:52px;border-radius:50%;background:var(--lime);
+    margin-top:-15px;width:58px;height:58px;border-radius:50%;background:var(--lime);
     display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px #c8f50055;
     border:3px solid rgba(255,255,255,.9);
   }
-  .fab img{width:30px;height:30px;object-fit:contain}
+  .fab img{width:34px;height:34px;object-fit:contain}
 </style>
 </head>
 <body>
