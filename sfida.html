@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Sector Vault — Sfida settimanale</title>
+<style>
+  :root{
+    --sfondo:#080b11;--card:#121826;--lime:#c8f500;--viola:#a97bff;--viola-2:#7c3aed;
+    --testo:#fff;--muto:#8b93a6;--muto-2:#6b7285;--rosso:#ff3838;--bordo:#232b3b;--ph:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:#000}
+  body{font-family:-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--testo);display:flex;justify-content:center}
+  .phone{width:100%;max-width:430px;min-height:100dvh;background:var(--sfondo);position:relative;padding:0 0 100px;overflow-x:hidden}
+  .ph{background:var(--ph);display:flex;align-items:center;justify-content:center;color:#9aa1ad;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-align:center;line-height:1.2}
+  .wrap{padding:0 16px}
+
+  /* HEADER */
+  .qhead{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 0}
+  .qhead-l{display:flex;align-items:center;gap:12px}
+  .back{width:30px;height:30px;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;background:none;border:none;cursor:pointer}
+  .back svg{width:26px;height:26px}
+  .qtitle{font-weight:900;font-size:17px;letter-spacing:.2px;white-space:nowrap}
+  .header-dx{display:flex;align-items:center;gap:16px}
+  .bell{position:relative;width:26px;height:26px;color:#e7e9ee}
+  .bell .badge{position:absolute;top:-6px;right:-7px;background:var(--rosso);color:#fff;font-size:11px;font-weight:800;min-width:19px;height:19px;border-radius:10px;display:flex;align-items:center;justify-content:center;border:2px solid var(--sfondo)}
+  .avatar{position:relative;width:48px;height:48px}
+  .avatar .ring{position:absolute;inset:0;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,var(--lime),#7bd000,var(--lime))}
+  .avatar-img{position:absolute;top:3px;left:3px;width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center top;background:radial-gradient(circle at 50% 32%,#f0524a,#8f1717)}
+  .avatar .lvl{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:var(--lime);color:#0b0e13;font-size:11px;font-weight:900;padding:1px 7px;border-radius:9px;border:2px solid var(--sfondo)}
+
+  /* HERO SFIDA */
+  .hero{position:relative;overflow:hidden;margin:14px 16px 0;border-radius:22px;background:linear-gradient(135deg,#2b1b52,#150f2c);border:1px solid #3a2a68;display:flex;flex-direction:column;min-height:230px}
+  .hero .txt{position:relative;z-index:2;padding:16px 14px 0;max-width:56%;flex:1}
+  .hero .kick{font-size:11.5px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--viola)}
+  .hero h1{margin-top:6px;font-size:19px;font-weight:900;line-height:1.1;letter-spacing:-.3px}
+  .hero .sub{margin-top:7px;font-size:12.5px;color:#d6dbe8;font-weight:600;line-height:1.3}
+  .scade{margin-top:11px;display:inline-flex;align-items:center;gap:7px;border:1px solid #4b3a7d;border-radius:20px;padding:6px 11px;font-size:11.5px;font-weight:700;color:#e2d9ff;white-space:nowrap}
+  /* immagine a destra, si ferma sopra i bottoni */
+  .hero .img{position:absolute;right:0;top:0;width:48%;height:calc(100% - 58px);object-fit:cover;object-position:center}
+  .hero::after{content:"";position:absolute;top:0;left:43%;width:14%;height:calc(100% - 58px);z-index:1;pointer-events:none;background:linear-gradient(90deg,#1e1440,rgba(30,20,64,0))}
+  /* bottoni DENTRO la card, in fondo */
+  .hero-btns{position:relative;z-index:3;display:flex;gap:9px;padding:0 12px 12px}
+  .btn-viola{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;border:1.5px solid #5b46a0;color:var(--viola);font-weight:900;font-size:12px;letter-spacing:.4px;text-transform:uppercase;padding:12px 10px;border-radius:24px;cursor:pointer;white-space:nowrap}
+  .btn-viola .q{width:19px;height:19px;border-radius:50%;background:#4b3a7d;color:#e2d9ff;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+  .btn-lime{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--lime);color:#0b0e13;font-weight:900;font-size:12px;letter-spacing:.4px;text-transform:uppercase;padding:12px 10px;border-radius:24px;border:none;cursor:pointer;white-space:nowrap}
+  .btn-lime svg{width:16px;height:16px}
+
+  /* CONFRONTO */
+  .conf{margin:14px 16px 0;background:var(--card);border:1px solid var(--bordo);border-radius:20px;padding:12px 10px;display:flex;align-items:center;gap:7px}
+  .conf .pl{position:relative;width:54px;flex-shrink:0}
+  .conf .pl img{width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:center top}
+  .conf .pl.rosso img{background:radial-gradient(circle at 50% 32%,#f0524a,#8f1717)}
+  .conf .pl.giallo img{background:radial-gradient(circle at 50% 32%,#f7c948,#a06f00)}
+  .conf .pl .lv{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);background:var(--viola-2);color:#fff;font-size:10px;font-weight:900;padding:1px 6px;border-radius:8px;border:2px solid var(--card)}
+  .conf .lato{flex:1;min-width:0}
+  .conf .lato.dx{text-align:right}
+  .conf .nome{font-size:13px;font-weight:900}
+  .conf .xp{margin-top:2px;font-size:15.5px;font-weight:900;color:var(--lime);white-space:nowrap}
+  .conf .lato.dx .xp{color:#fff}
+  .conf .bar{margin-top:6px;height:8px;border-radius:5px;background:#1c2434;overflow:hidden}
+  .conf .bar i{display:block;height:100%;border-radius:5px;background:var(--lime)}
+  .conf .lato.dx .bar i{background:var(--viola)}
+  .vshex{width:46px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;font-style:italic;color:#e2d9ff;
+    background:linear-gradient(145deg,#4b2f8f,#2a1a52);border:2px solid #6f4fd0;
+    clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+
+  /* RICOMPENSE */
+  .blocco{margin:14px 16px 0;background:var(--card);border:1px solid var(--bordo);border-radius:20px;padding:15px}
+  .blocco-t{font-size:12.5px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:var(--viola);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+  .blocco-t a{font-size:11px;color:var(--muto);text-decoration:none;font-weight:800;display:flex;align-items:center;gap:3px}
+  .track{position:relative;display:flex;align-items:center;justify-content:space-between;margin:0 6px 12px}
+  .track::before{content:"";position:absolute;left:10px;right:10px;top:50%;height:3px;background:#28304a;transform:translateY(-50%);z-index:0}
+  .track .fill{position:absolute;left:10px;top:50%;height:3px;background:var(--lime);transform:translateY(-50%);z-index:1;width:50%}
+  .nodo{position:relative;z-index:2;width:22px;height:22px;border-radius:50%;background:#0f1420;border:2.5px solid #39415a;display:flex;align-items:center;justify-content:center;color:#6b7285}
+  .nodo svg{width:12px;height:12px}
+  .nodo.ok{border-color:var(--lime);color:var(--lime)}
+  .nodo.now{border-color:var(--lime);background:var(--lime)}
+  .prem{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;-ms-overflow-style:none;scrollbar-width:none}
+  .prem::-webkit-scrollbar{display:none}
+  .card-p{flex:1 0 0;min-width:0;background:#0f1420;border:1.5px solid #232b3b;border-radius:14px;padding:9px 6px;display:flex;flex-direction:column;align-items:center;gap:7px}
+  .card-p.now{border-color:var(--lime)}
+  .card-p .q{font-size:11px;font-weight:900;white-space:nowrap}
+  .card-p .ico{height:44px;display:flex;align-items:center;justify-content:center}
+  .card-p .ico img{max-height:44px;max-width:100%;object-fit:contain}
+  .card-p .st{font-size:8.5px;font-weight:900;letter-spacing:.3px;text-transform:uppercase;color:var(--muto-2)}
+  .card-p.now .st{color:var(--lime)}
+
+  /* LE TUE SFIDE */
+  .riga{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+  .riga .thumb{width:74px;height:56px;border-radius:11px;flex-shrink:0}
+  .riga .mid{flex:1;min-width:0}
+  .riga .tit{font-size:14.5px;font-weight:800}
+  .riga .pr{margin-top:7px;display:flex;align-items:center;gap:8px}
+  .riga .bar{flex:1;height:9px;border-radius:5px;background:#1c2434;overflow:hidden}
+  .riga .bar i{display:block;height:100%;border-radius:5px;background:var(--lime)}
+  .riga .cnt{font-size:12px;font-weight:900;color:#cfd4de;white-space:nowrap}
+  .riga .rew{width:64px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:2px}
+  .riga .rew img{width:34px;height:34px;object-fit:contain}
+  .riga .rew .xpt{font-size:10px;font-weight:800;color:var(--muto)}
+  .riga .rew .done{color:#3ddc84;display:flex;flex-direction:column;align-items:center;gap:3px}
+  .riga .rew .done svg{width:24px;height:24px}
+  .riga .rew .done span{font-size:8.5px;font-weight:900;letter-spacing:.2px}
+
+  /* CLASSIFICA */
+  .cl{display:flex;align-items:center;gap:12px;background:#0f1420;border:1px solid var(--bordo);border-radius:13px;padding:9px 12px;margin-bottom:8px}
+  .cl .pos{font-size:15px;font-weight:900;color:var(--muto);width:14px}
+  .cl.io .pos{color:var(--lime)}
+  .cl img{width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top}
+  .cl .n{flex:1;font-size:14px;font-weight:800}
+  .cl .p{font-size:15px;font-weight:900}
+  .cl.io .p{color:var(--lime)}
+
+  /* NAV */
+  .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:84px;background:transparent;display:flex;align-items:flex-start;justify-content:space-around;padding-top:14px;z-index:1000}
+  .nav::before{content:"";position:absolute;inset:0;z-index:-1;background:#0e1420;border-radius:28px 28px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.4);
+    --tacca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 70'%3E%3Cpath d='M28.25 0 L101.75 0 Q94.75 0 94.75 6 A37 37 0 1 1 35.25 6 Q35.25 0 28.25 0 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask:var(--tacca) top center/130px 70px no-repeat, linear-gradient(#000,#000);-webkit-mask-composite:xor;
+    mask:var(--tacca) top center/130px 70px no-repeat, linear-gradient(#000,#000);mask-composite:exclude}
+  .nav a{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#8a92a4;text-decoration:none;flex:1}
+  .nav a.on{color:var(--lime)}
+  .nav a .nav-ico{width:27px;height:27px;object-fit:contain}
+  .fab{margin-top:-15px;width:58px;height:58px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px #c8f50055;z-index:1001;border:3px solid rgba(255,255,255,.9)}
+  .fab img{width:34px;height:34px;object-fit:contain}
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <!-- HEADER -->
+  <div class="qhead">
+    <div class="qhead-l">
+      <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <div class="qtitle">SFIDA SETTIMANALE</div>
+    </div>
+    <div class="header-dx">
+      <div class="bell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        <span class="badge">3</span>
+      </div>
+      <div class="avatar"><div class="ring"></div><img class="avatar-img" src="assets/avatar1.png" alt=""><span class="lvl">12</span></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="txt">
+      <div class="kick">Sfida in corso</div>
+      <h1>Sfida un amico e dimostra chi è il top!</h1>
+      <div class="sub">Affronta un pilota a scelta e guadagna XP!</div>
+      <div class="scade">⏱ Scade tra: 5g 14h</div>
+    </div>
+    <div class="img ph">IMMAGINE<br>SFIDA</div>
+    <div class="hero-btns">
+      <button class="btn-viola">Come funziona <span class="q">?</span></button>
+      <button class="btn-lime">Invita un amico
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M18 8v6M21 11h-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- CONFRONTO -->
+  <div class="conf">
+    <div class="pl rosso"><img src="assets/avatar1.png" alt=""><span class="lv">12</span></div>
+    <div class="lato">
+      <div class="nome">TU</div>
+      <div class="xp">2.450 XP</div>
+      <div class="bar"><i style="width:62%"></i></div>
+    </div>
+    <div class="vshex">VS</div>
+    <div class="lato dx">
+      <div class="nome">BEPPE</div>
+      <div class="xp">1.890 XP</div>
+      <div class="bar"><i style="width:48%"></i></div>
+    </div>
+    <div class="pl giallo"><img src="assets/avatar2.png" alt=""><span class="lv">15</span></div>
+  </div>
+
+  <!-- RICOMPENSE -->
+  <div class="blocco">
+    <div class="blocco-t">Ricompense</div>
+    <div class="track">
+      <div class="fill"></div>
+      <div class="nodo ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+      <div class="nodo ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+      <div class="nodo now"></div>
+      <div class="nodo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+      <div class="nodo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+    </div>
+    <div class="prem">
+      <div class="card-p"><span class="q">500 XP</span><div class="ico"><img src="assets/xp.png" alt=""></div><span class="st">Raggiunta</span></div>
+      <div class="card-p"><span class="q">1.500 XP</span><div class="ico"><img src="assets/moneta.png" alt=""></div><span class="st">Raggiunta</span></div>
+      <div class="card-p now"><span class="q">2.500 XP</span><div class="ico"><img src="assets/xp.png" alt=""></div><span class="st">Prossimo</span></div>
+      <div class="card-p"><span class="q">5.000 XP</span><div class="ico"><img src="assets/moneta.png" alt=""></div><span class="st">Bloccata</span></div>
+      <div class="card-p"><span class="q">7.500 XP</span><div class="ico"><img src="assets/monete.png" alt=""></div><span class="st">Bloccata</span></div>
+    </div>
+  </div>
+
+  <!-- LE TUE SFIDE -->
+  <div class="blocco">
+    <div class="blocco-t">Le tue sfide</div>
+    <div class="riga">
+      <div class="thumb ph">IMG</div>
+      <div class="mid">
+        <div class="tit">Vinci 3 gare</div>
+        <div class="pr"><div class="bar"><i style="width:66%"></i></div><span class="cnt">2/3</span></div>
+      </div>
+      <div class="rew"><img src="assets/xp.png" alt=""><span class="xpt">+300 XP</span></div>
+    </div>
+    <div class="riga">
+      <div class="thumb ph">IMG</div>
+      <div class="mid">
+        <div class="tit">Fai 5 giri veloci</div>
+        <div class="pr"><div class="bar"><i style="width:100%"></i></div><span class="cnt">5/5</span></div>
+      </div>
+      <div class="rew"><div class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Completata</span></div></div>
+    </div>
+    <div class="riga" style="margin-bottom:0">
+      <div class="thumb ph">IMG</div>
+      <div class="mid">
+        <div class="tit">Effettua 10 sorpassi</div>
+        <div class="pr"><div class="bar"><i style="width:60%"></i></div><span class="cnt">6/10</span></div>
+      </div>
+      <div class="rew"><img src="assets/xp.png" alt=""><span class="xpt">+400 XP</span></div>
+    </div>
+  </div>
+
+  <!-- CLASSIFICA AMICI -->
+  <div class="blocco">
+    <div class="blocco-t">Classifica amici <a href="#">Vedi tutta ›</a></div>
+    <div class="cl io"><span class="pos">1</span><img src="assets/avatar1.png" alt=""><span class="n">TU</span><span class="p">2.450 XP</span></div>
+    <div class="cl" style="margin-bottom:0"><span class="pos">2</span><img src="assets/avatar2.png" alt=""><span class="n">BEPPE</span><span class="p">1.890 XP</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <a href="index.html"><img class="nav-ico" src="assets/home.png" alt="">Home</a>
+  <a href="index.html"><img class="nav-ico" src="assets/esplora.png" alt="">Esplora</a>
+  <a href="#"><div class="fab"><img src="assets/bandiera.png" alt=""></div></a>
+  <a href="index.html"><img class="nav-ico" src="assets/garage.png" alt="">Garage</a>
+  <a href="index.html"><img class="nav-ico" src="assets/profilo.png" alt="">Profilo</a>
+</div>
+</body>
+</html>
