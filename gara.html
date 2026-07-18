@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Sector Vault — Race Center</title>
+<style>
+  :root{
+    --sfondo:#080b11;--card:#121826;--tile:#141a27;--lime:#c8f500;--viola:#a97bff;--viola-2:#7c3aed;
+    --testo:#fff;--muto:#8b93a6;--muto-2:#6b7285;--rosso:#ff3838;--bordo:#232b3b;--ph:#fff;--teal:#37e0c8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  [hidden]{display:none!important}
+  html,body{background:#000}
+  body{font-family:-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--testo);display:flex;justify-content:center}
+  .phone{width:100%;max-width:430px;min-height:100dvh;background:var(--sfondo);position:relative;padding:0 0 100px;overflow-x:hidden}
+  .ph{background:var(--ph);display:flex;align-items:center;justify-content:center;color:#9aa1ad;font-size:8px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;text-align:center;line-height:1.1}
+
+  .g-wrap{padding:0 12px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+  .card{background:var(--card);border:1px solid var(--bordo);border-radius:18px;padding:13px;min-width:0}
+  .card.solo{margin-top:14px}
+  .sec-t{font-size:13px;font-weight:900;letter-spacing:.2px;display:flex;align-items:center;gap:6px}
+  .sec-hd{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:11px}
+  .vedi{font-size:10px;font-weight:800;color:var(--muto);white-space:nowrap;text-decoration:none}
+
+  /* HEADER */
+  .rc-head{display:flex;align-items:center;justify-content:space-between;padding:16px 14px 0}
+  .rc-head .l{display:flex;align-items:center;gap:11px}
+  .rc-flag{width:34px;height:34px;flex-shrink:0;color:#fff}
+  .rc-flag svg{width:34px;height:34px}
+  .rc-ttl b{font-size:20px;font-weight:900;letter-spacing:.5px;display:block;line-height:1}
+  .rc-ttl span{font-size:11px;color:var(--muto);font-weight:600}
+  .header-dx{display:flex;align-items:center;gap:15px}
+  .bell{position:relative;width:26px;height:26px;color:#e7e9ee}
+  .bell svg{width:26px;height:26px}
+  .bell .badge{position:absolute;top:-6px;right:-7px;background:var(--rosso);color:#fff;font-size:11px;font-weight:800;min-width:19px;height:19px;border-radius:10px;display:flex;align-items:center;justify-content:center;border:2px solid var(--sfondo)}
+  .avatar{position:relative;width:46px;height:46px}
+  .avatar .ring{position:absolute;inset:0;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,var(--lime),#7bd000,var(--lime))}
+  .avatar-img{position:absolute;top:3px;left:3px;width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center top}
+  .avatar .lvl{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:var(--lime);color:#0b0e13;font-size:11px;font-weight:900;padding:1px 6px;border-radius:9px;border:2px solid var(--sfondo)}
+
+  /* HERO PROSSIMA GARA */
+  .gara-hero{position:relative;overflow:hidden;margin:14px 12px 0;border-radius:22px;background:linear-gradient(135deg,#16223a,#0e1524);border:1px solid var(--bordo);min-height:210px}
+  .gara-hero .bg{position:absolute;right:0;top:0;bottom:0;width:52%;object-fit:cover}
+  .gara-hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,15,26,.96) 44%,rgba(10,15,26,.55) 66%,rgba(10,15,26,0) 96%)}
+  .gara-hero .in{position:relative;z-index:2;padding:18px 16px}
+  .gara-hero .k{font-size:12px;font-weight:900;letter-spacing:.6px;color:var(--teal);text-transform:uppercase}
+  .gara-hero h1{margin-top:5px;font-size:26px;font-weight:900;font-style:italic;letter-spacing:-.6px}
+  .gara-hero .aut{margin-top:3px;font-size:13px;color:#cfd4de;font-weight:600}
+  .traccia{position:absolute;top:14px;right:16px;z-index:3;width:66px;height:40px;border-radius:8px;font-size:7px}
+  .cd{margin-top:14px;display:flex;gap:8px}
+  .cd .box{flex:1;background:#0d1320;border:1px solid #263049;border-radius:12px;padding:9px 2px;text-align:center}
+  .cd .box b{display:block;font-size:23px;font-weight:900;line-height:1;margin-bottom:3px}
+  .cd .box span{display:block;font-size:8.5px;font-weight:800;color:var(--muto);letter-spacing:.3px;text-transform:uppercase}
+  .btn-lime{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:#0b0e13;font-weight:900;font-size:13px;letter-spacing:.4px;text-transform:uppercase;padding:13px 20px;border-radius:24px;border:none;cursor:pointer;text-decoration:none;width:fit-content}
+  .gara-hero .btn-lime{margin-top:15px}
+
+  /* PROGRAMMA WEEKEND (4 colonne) */
+  .wk{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+  .day{background:#0f1420;border:1px solid var(--bordo);border-radius:12px;padding:9px 7px}
+  .day.gara{border-color:var(--lime);background:#141a0d}
+  .day.evid{border-color:#4b3a7d}
+  .day .d{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.2px}
+  .day.gara .d{color:var(--lime)} .day.evid .d{color:var(--viola)}
+  .day .dt{font-size:8.5px;color:var(--muto);margin-top:1px;margin-bottom:8px}
+  .ses{margin-bottom:8px}
+  .ses:last-child{margin-bottom:0}
+  .ses .nm{font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:4px}
+  .ses .hr{font-size:8.5px;color:var(--muto);margin-top:1px}
+  .play{width:20px;height:20px;border-radius:50%;border:1.4px solid #39415a;color:#cfd4de;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .play svg{width:9px;height:9px}
+  .day .big{font-size:17px;font-weight:900;color:var(--lime);margin-top:4px}
+  .day .ora{font-size:13px;font-weight:800;margin-top:2px}
+  .day .hdr{display:flex;justify-content:space-between;align-items:flex-start}
+  .day .trofeo{font-size:13px}
+
+  /* METEO */
+  .meteo-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .meteo-top .em{font-size:26px}
+  .meteo-top .day2{font-size:10px;font-weight:900;text-transform:uppercase;color:var(--muto)}
+  .meteo-top .tp{font-size:24px;font-weight:900;line-height:1}
+  .meteo-top .desc{font-size:9.5px;color:var(--muto)}
+  .meteo-grid{margin-top:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .meteo-grid .c{background:#0f1420;border:1px solid var(--bordo);border-radius:9px;padding:6px;text-align:center}
+  .meteo-grid .c span{font-size:8.5px;color:var(--muto);display:block}
+  .meteo-grid .c b{font-size:12px;font-weight:900}
+  .ore{margin-top:11px;display:flex;justify-content:space-between;gap:2px}
+  .ore .h{text-align:center;flex:1}
+  .ore .h .t{font-size:8px;color:var(--muto);font-weight:700}
+  .ore .h.now .t{color:var(--lime)}
+  .ore .h .e{font-size:14px;margin:2px 0}
+  .ore .h .g{font-size:10px;font-weight:800}
+
+  /* NEWS */
+  .news-it{display:flex;gap:9px;padding:9px 0;border-top:1px solid var(--bordo)}
+  .news-it:first-of-type{border-top:none;padding-top:0}
+  .news-it .th{width:52px;height:40px;border-radius:8px;flex-shrink:0}
+  .news-it .b{flex:1;min-width:0}
+  .news-it .b h4{font-size:11px;font-weight:800;line-height:1.2}
+  .news-it .b .ago{margin-top:3px;font-size:9px;color:var(--muto-2);font-weight:700}
+
+  /* CLASSIFICA */
+  .drow{display:flex;align-items:center;gap:6px;padding:7px 0;border-top:1px solid var(--bordo)}
+  .drow:first-of-type{border-top:none}
+  .drow .pos{width:12px;font-size:12px;font-weight:900;color:var(--muto);flex-shrink:0}
+  .drow.p1 .pos{color:var(--lime)} .drow.p3 .pos{color:var(--rosso)}
+  .drow .av{width:24px;height:24px;border-radius:50%;flex-shrink:0}
+  .drow .nm{flex:1;min-width:0;font-size:9.5px;font-weight:800;line-height:1.1;overflow:hidden;text-overflow:ellipsis}
+  .drow .nm b{font-weight:900;display:block;font-size:8px;color:var(--muto)}
+  .drow .pt{font-size:12px;font-weight:900;text-align:right;flex-shrink:0}
+  .drow .pt span{font-size:7px;color:var(--muto);display:block;font-weight:700}
+  .fullbtn{margin-top:10px;width:100%;display:flex;align-items:center;justify-content:center;gap:4px;background:#0f1420;border:1px solid var(--bordo);border-radius:11px;padding:9px 4px;font-size:9px;font-weight:800;color:#cfd4de;text-transform:uppercase;letter-spacing:.2px;text-decoration:none;text-align:center;line-height:1.1}
+
+  /* PRONOSTICI */
+  .pr{padding:8px 0;border-top:1px solid var(--bordo)}
+  .pr:first-of-type{border-top:none;padding-top:0}
+  .pr .lab{font-size:8px;font-weight:900;letter-spacing:.2px;color:var(--muto);text-transform:uppercase}
+  .pr .val{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-top:3px}
+  .pr .val .nm{font-size:11px;font-weight:900;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .pr .avs{display:flex;flex-shrink:0}
+  .pr .avs .a{width:22px;height:22px;border-radius:50%;margin-left:-6px;border:2px solid var(--card)}
+  .pr .avs .a:first-child{margin-left:0}
+  .pr .av1{width:24px;height:24px;border-radius:50%;flex-shrink:0}
+  .pr-tot{margin-top:9px;padding-top:9px;border-top:1px solid var(--bordo);display:flex;align-items:center;justify-content:space-between}
+  .pr-tot .l{font-size:9px;font-weight:900;text-transform:uppercase;color:var(--muto)}
+  .pr-tot .r{font-size:16px;font-weight:900;color:var(--viola)}
+
+  /* QUIZ DEL GP */
+  .quizgp{text-align:center}
+  .quizgp .badge2{display:inline-block;font-size:8px;font-weight:900;color:#fff;background:var(--viola-2);padding:2px 7px;border-radius:7px;letter-spacing:.3px;margin-bottom:9px}
+  .quizgp .ill{width:100%;height:74px;border-radius:12px;margin-bottom:10px}
+  .quizgp h3{font-size:13px;font-weight:900;line-height:1.15}
+  .quizgp p{margin-top:5px;font-size:9.5px;color:var(--muto)}
+  .btn-viola{margin-top:10px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--viola-2);color:#fff;font-weight:900;font-size:10px;letter-spacing:.2px;text-transform:uppercase;padding:11px 4px;border-radius:20px;border:none;text-decoration:none}
+
+  /* LIVE EVENTI */
+  .live-badge{font-size:9px;font-weight:900;color:#fff;background:var(--rosso);padding:2px 7px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;letter-spacing:.4px}
+  .live-badge::before{content:"";width:5px;height:5px;border-radius:50%;background:#fff}
+  .evt{display:flex;gap:9px;padding:9px 0;border-top:1px solid var(--bordo)}
+  .evt:first-of-type{border-top:none}
+  .evt .dot{width:24px;height:24px;border-radius:50%;background:#0f1420;border:1.4px solid #2a3a2c;display:flex;align-items:center;justify-content:center;color:var(--lime);flex-shrink:0}
+  .evt .dot svg{width:12px;height:12px}
+  .evt .b .g{font-size:9.5px;font-weight:900;color:var(--lime);text-transform:uppercase;letter-spacing:.2px}
+  .evt .b .ds{font-size:10px;color:var(--muto);margin-top:1px}
+
+  /* TEAM RADIO */
+  .wave{height:38px;background:repeating-linear-gradient(90deg,#37e0c8 0 2px,transparent 2px 5px);border-radius:6px;opacity:.85}
+  .radio-row{margin-top:11px;display:flex;align-items:center;gap:8px;background:#0f1420;border:1px solid var(--bordo);border-radius:12px;padding:8px 9px}
+  .radio-row .av{width:32px;height:32px;border-radius:50%;flex-shrink:0}
+  .radio-row .nm{flex:1;min-width:0;font-size:11px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .radio-row .pl{width:28px;height:28px;border-radius:50%;background:#1a2233;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+  .radio-row .pl svg{width:13px;height:13px}
+  .radio-row .lv{font-size:8px;font-weight:900;color:var(--rosso);display:flex;align-items:center;gap:3px;flex-shrink:0}
+  .radio-row .lv::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--rosso)}
+
+  /* NAV */
+  .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:84px;background:transparent;display:flex;align-items:flex-start;justify-content:space-around;padding-top:14px;z-index:1000}
+  .nav::before{content:"";position:absolute;inset:0;z-index:-1;background:#0e1420;border-radius:28px 28px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.4);
+    --tacca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 70'%3E%3Cpath d='M28.25 0 L101.75 0 Q94.75 0 94.75 6 A37 37 0 1 1 35.25 6 Q35.25 0 28.25 0 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask:var(--tacca) top center/130px 70px no-repeat, linear-gradient(#000,#000);-webkit-mask-composite:xor;
+    mask:var(--tacca) top center/130px 70px no-repeat, linear-gradient(#000,#000);mask-composite:exclude}
+  .nav a{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#8a92a4;text-decoration:none;flex:1}
+  .nav a.on{color:var(--lime)}
+  .nav a .nav-ico{width:27px;height:27px;object-fit:contain}
+  .fab{margin-top:-15px;width:58px;height:58px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px #c8f50055;z-index:1001;border:3px solid rgba(255,255,255,.9)}
+  .fab img{width:34px;height:34px;object-fit:contain}
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <!-- HEADER -->
+  <div class="rc-head">
+    <div class="l">
+      <span class="rc-flag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h13l-2.5 3.5L18 11H5"/></svg></span>
+      <div class="rc-ttl"><b>RACE CENTER</b><span>Il cuore del weekend di gara ⚡</span></div>
+    </div>
+    <div class="header-dx">
+      <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="badge">3</span></div>
+      <div class="avatar"><div class="ring"></div><img class="avatar-img" src="assets/avatar1.png" alt=""><span class="lvl">12</span></div>
+    </div>
+  </div>
+
+  <!-- PROSSIMA GARA -->
+  <div class="gara-hero">
+    <img class="bg" src="assets/piste/miami.jpg" alt="">
+    <div class="traccia ph">TRACCIATO</div>
+    <div class="in">
+      <div class="k">Prossima gara</div>
+      <h1>GP DI MIAMI 🇺🇸</h1>
+      <div class="aut">Miami International Autodrome</div>
+      <div class="cd">
+        <div class="box"><b id="cdG">02</b><span>Giorni</span></div>
+        <div class="box"><b id="cdH">14</b><span>Ore</span></div>
+        <div class="box"><b id="cdM">32</b><span>Minuti</span></div>
+        <div class="box"><b id="cdS">45</b><span>Secondi</span></div>
+      </div>
+      <a class="btn-lime" href="#">Dettagli GP ›</a>
+    </div>
+  </div>
+
+  <div class="g-wrap">
+
+    <!-- PROGRAMMA WEEKEND -->
+    <div class="card solo">
+      <div class="sec-hd">
+        <div class="sec-t">📅 Programma del weekend</div>
+        <span class="vedi">🕒 Orari locali</span>
+      </div>
+      <div class="wk">
+        <div class="day">
+          <div class="d">Venerdì</div><div class="dt">2 Maggio</div>
+          <div class="ses"><div class="nm">FP1 <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div><div class="hr">18:30-19:30</div></div>
+          <div class="ses"><div class="nm">FP2 <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div><div class="hr">22:00-23:00</div></div>
+        </div>
+        <div class="day">
+          <div class="d">Sabato</div><div class="dt">3 Maggio</div>
+          <div class="ses"><div class="nm">FP3 <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div><div class="hr">17:30-18:30</div></div>
+          <div class="ses"><div class="nm" style="font-size:10px">Qual. <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div><div class="hr">21:00-22:00</div></div>
+        </div>
+        <div class="day gara">
+          <div class="hdr"><div><div class="d">Domenica</div><div class="dt">4 Maggio</div></div><span class="trofeo">🏆</span></div>
+          <div class="big">GARA</div><div class="ora">21:00</div>
+        </div>
+        <div class="day evid">
+          <div class="hdr"><div><div class="d">In evid.</div><div class="dt">3 Maggio</div></div><span class="trofeo">🏆</span></div>
+          <div class="big" style="color:#fff;font-size:14px">Sprint</div><div class="ora">13:00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- METEO + NEWS (2 colonne) -->
+    <div class="row2">
+      <div class="card">
+        <div class="sec-t" style="margin-bottom:10px">🌤️ Meteo previsto</div>
+        <div class="meteo-top">
+          <span class="em">🌤️</span>
+          <div><div class="day2">Domenica</div><div class="tp">21°C</div><div class="desc">Parz. nuvoloso</div></div>
+        </div>
+        <div class="meteo-grid">
+          <div class="c"><span>Umidità</span><b>68%</b></div>
+          <div class="c"><span>Vento</span><b>16<small style="font-size:8px"> km/h</small></b></div>
+          <div class="c"><span>Pioggia</span><b>10%</b></div>
+        </div>
+        <div class="ore">
+          <div class="h"><div class="t">18</div><div class="e">☀️</div><div class="g">23°</div></div>
+          <div class="h"><div class="t">19</div><div class="e">🌤️</div><div class="g">22°</div></div>
+          <div class="h"><div class="t">20</div><div class="e">🌤️</div><div class="g">21°</div></div>
+          <div class="h now"><div class="t">21</div><div class="e">⛅</div><div class="g">21°</div></div>
+          <div class="h"><div class="t">22</div><div class="e">⛅</div><div class="g">20°</div></div>
+          <div class="h"><div class="t">23</div><div class="e">☁️</div><div class="g">20°</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="sec-hd"><div class="sec-t">📰 Ultime news</div><a class="vedi" href="#">Tutte ›</a></div>
+        <div class="news-it"><div class="th ph">IMG</div><div class="b"><h4>Red Bull porta aggiornamenti per Miami</h4><div class="ago">2 ore fa</div></div></div>
+        <div class="news-it"><div class="th ph">IMG</div><div class="b"><h4>McLaren punta alla doppietta in Florida</h4><div class="ago">4 ore fa</div></div></div>
+        <div class="news-it"><div class="th ph">IMG</div><div class="b"><h4>Leclerc: "Miami mi piace molto"</h4><div class="ago">6 ore fa</div></div></div>
+      </div>
+    </div>
+
+    <!-- CLASSIFICA + PRONOSTICI + QUIZ (3 colonne) -->
+    <div class="row3">
+      <div class="card">
+        <div class="sec-hd"><div class="sec-t" style="font-size:11px">Classifica</div></div>
+        <div class="drow p1"><span class="pos">1</span><div class="av ph"></div><div class="nm"><b>Max</b>VERSTAPPEN</div><div class="pt">123<span>PTI</span></div></div>
+        <div class="drow"><span class="pos">2</span><div class="av ph"></div><div class="nm"><b>Lando</b>NORRIS</div><div class="pt">105<span>PTI</span></div></div>
+        <div class="drow p3"><span class="pos">3</span><div class="av ph"></div><div class="nm"><b>Charles</b>LECLERC</div><div class="pt">87<span>PTI</span></div></div>
+        <div class="drow"><span class="pos">4</span><div class="av ph"></div><div class="nm"><b>Lewis</b>HAMILTON</div><div class="pt">65<span>PTI</span></div></div>
+        <div class="drow"><span class="pos">5</span><div class="av ph"></div><div class="nm"><b>George</b>RUSSELL</div><div class="pt">58<span>PTI</span></div></div>
+        <a class="fullbtn" href="#">Classifica completa ›</a>
+      </div>
+
+      <div class="card">
+        <div class="sec-hd"><div class="sec-t" style="font-size:11px">Pronostici</div></div>
+        <div class="pr"><div class="lab">Vincitore gara</div><div class="val"><span class="nm">Max VERSTAPPEN</span><div class="av1 ph"></div></div></div>
+        <div class="pr"><div class="lab">Podio</div><div class="val"><span class="nm" style="font-size:9px;color:#cfd4de;font-weight:700">Ver, Nor, Lec</span><div class="avs"><span class="a ph"></span><span class="a ph"></span><span class="a ph"></span></div></div></div>
+        <div class="pr"><div class="lab">Pole position</div><div class="val"><span class="nm">Lando NORRIS</span><div class="av1 ph"></div></div></div>
+        <div class="pr"><div class="lab">Giro veloce</div><div class="val"><span class="nm">Max VERSTAPPEN</span><div class="av1 ph"></div></div></div>
+        <div class="pr-tot"><span class="l">Punti tot.</span><span class="r">250<span style="font-size:9px;color:var(--muto)"> PTI</span> ⭐</span></div>
+      </div>
+
+      <div class="card quizgp">
+        <span class="badge2">NUOVO</span>
+        <div class="ill ph">IMMAGINE<br>QUIZ GP</div>
+        <h3>Quanto conosci il GP di Miami?</h3>
+        <p>Guadagna XP e monete!</p>
+        <a class="btn-viola" href="quiz.html">Gioca ora ›</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <a href="index.html"><img class="nav-ico" src="assets/home.png" alt="">Home</a>
+  <a href="index.html"><img class="nav-ico" src="assets/esplora.png" alt="">Esplora</a>
+  <a href="gara.html"><div class="fab"><img src="assets/bandiera.png" alt=""></div></a>
+  <a href="index.html"><img class="nav-ico" src="assets/garage.png" alt="">Garage</a>
+  <a href="index.html"><img class="nav-ico" src="assets/profilo.png" alt="">Profilo</a>
+</div>
+
+<script>
+(function(){
+  var g=document.getElementById('cdG'),h=document.getElementById('cdH'),m=document.getElementById('cdM'),s=document.getElementById('cdS');
+  var tot=((2*24+14)*60+32)*60+45;
+  function p(n){return ('0'+n).slice(-2);}
+  function tick(){
+    if(tot<=0){tot=0;}
+    var d=Math.floor(tot/86400), r=tot%86400;
+    g.textContent=p(d); h.textContent=p(Math.floor(r/3600)); m.textContent=p(Math.floor(r%3600/60)); s.textContent=p(r%60);
+    if(tot>0) tot--;
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
