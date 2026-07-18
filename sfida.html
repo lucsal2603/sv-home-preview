@@ -42,7 +42,7 @@
   .hero .sub{margin-top:7px;font-size:12.5px;color:#d6dbe8;font-weight:600;line-height:1.3}
   .scade{margin-top:11px;display:inline-flex;align-items:center;gap:7px;border:1px solid #4b3a7d;border-radius:20px;padding:6px 11px;font-size:11.5px;font-weight:700;color:#e2d9ff;white-space:nowrap}
   /* immagine a destra, si ferma sopra i bottoni */
-  .hero .img{position:absolute;right:0;top:0;width:48%;height:calc(100% - 58px);object-fit:cover;object-position:center}
+  .hero .img{position:absolute;right:-2%;top:0;width:56%;height:calc(100% - 58px);object-fit:contain;object-position:center}
   .hero::after{content:"";position:absolute;top:0;left:43%;width:14%;height:calc(100% - 58px);z-index:1;pointer-events:none;background:linear-gradient(90deg,#1e1440,rgba(30,20,64,0))}
   /* bottoni DENTRO la card, in fondo */
   .hero-btns{position:relative;z-index:3;display:flex;gap:9px;padding:0 12px 12px}
@@ -236,7 +236,7 @@
       <div class="sub">Affronta un pilota a scelta e guadagna XP!</div>
       <div class="scade">⏱ Scade tra: 5g 14h</div>
     </div>
-    <div class="img ph">IMMAGINE<br>SFIDA</div>
+    <img class="img" src="assets/sfida-vs.png" alt="">
     <div class="hero-btns">
       <button class="btn-viola" id="btnComeFunziona">Come funziona <span class="q">?</span></button>
       <button class="btn-lime" id="btnInvita">Invita un amico
