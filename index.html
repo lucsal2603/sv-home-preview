@@ -207,6 +207,35 @@
   .news .meta{margin-top:7px;font-size:11px;color:var(--muto-2);font-weight:700}
   .news .chat{position:absolute;right:0;bottom:0;color:var(--muto)}
 
+  /* ── POP-UP LIVELLO SALITO ── */
+  .levelup{position:fixed;inset:0;z-index:3000;background:rgba(5,7,12,.9);backdrop-filter:blur(2px);display:flex;justify-content:center;overflow-y:auto;padding:14px}
+  .levelup[hidden]{display:none}
+  .lu-inner{width:100%;max-width:410px;margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .lu-title{font-style:italic;font-weight:900;line-height:.92;letter-spacing:-1px}
+  .lu-title span{font-size:30px}
+  .lu-title b{display:block;font-size:44px;color:var(--lime)}
+  .lu-sub{margin-top:9px;font-size:15px;color:#d6dbe8;font-weight:600}
+  .lu-badge{position:relative;width:200px;height:180px;margin-top:4px;display:flex;align-items:center;justify-content:center}
+  .lu-badge .glow{position:absolute;width:330px;max-width:none;top:48%;left:50%;transform:translate(-50%,-50%);opacity:.85;pointer-events:none;z-index:0}
+  .lu-badge .ring{position:relative;width:190px;z-index:1}
+  .lu-badge .num{position:absolute;z-index:2;top:47%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;line-height:1}
+  .lu-badge .num span{font-size:15px;font-weight:900;letter-spacing:1px}
+  .lu-badge .num b{font-size:54px;font-weight:900;font-style:italic;color:var(--lime);margin-top:-2px}
+  .lu-masc{width:220px;margin-top:-34px;z-index:3;position:relative;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5))}
+  .lu-ric{margin-top:2px;width:100%;background:rgba(15,20,32,.9);border:1px solid var(--bordo);border-radius:18px;padding:13px 14px}
+  .lu-ric-t{font-size:13px;font-weight:900;letter-spacing:.6px;color:var(--lime);text-transform:uppercase}
+  .lu-rew{margin-top:11px;display:flex;align-items:center}
+  .lu-rew .rw{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
+  .lu-rew .rw+.rw::before{content:"";position:absolute;left:0;top:12%;height:76%;width:1px;background:#2a3448}
+  .lu-rew .rw img{width:46px;height:46px;object-fit:contain}
+  .lu-rew .rw span{font-size:12px;font-weight:800;color:#e6e2f5}
+  .lu-msg{margin-top:11px;width:100%;display:flex;align-items:center;gap:12px;background:rgba(15,20,32,.9);border:1px solid var(--bordo);border-radius:14px;padding:11px 13px;text-align:left}
+  .lu-msg .star{width:44px;height:44px;border-radius:50%;background:#2e2716;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#ffd23e}
+  .lu-msg .star svg{width:26px;height:26px}
+  .lu-msg b{display:block;font-size:14px;font-weight:900;color:var(--lime)}
+  .lu-msg p{font-size:12.5px;color:#cfd4de;line-height:1.28}
+  .lu-cont{margin-top:14px;width:100%;background:var(--lime);color:#0b0e13;font-weight:900;font-size:15px;letter-spacing:.4px;text-transform:uppercase;padding:16px;border-radius:28px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+
   /* ── BOTTOM NAV ───────────────────────── */
   .nav{
     position:fixed;bottom:0;left:50%;transform:translateX(-50%);
@@ -390,6 +419,33 @@
 
 </div>
 
+<!-- POP-UP LIVELLO SALITO (per ora fisso all'ingresso) -->
+<div class="levelup" id="levelup">
+  <div class="lu-inner">
+    <h1 class="lu-title"><span>LIVELLO</span><b>SALITO!</b></h1>
+    <p class="lu-sub">Complimenti, sei arrivato al</p>
+    <div class="lu-badge">
+      <img class="glow" src="assets/livup-glow.png" alt="">
+      <img class="ring" src="assets/livup-livello.png" alt="">
+      <div class="num"><span>LIVELLO</span><b>13</b></div>
+    </div>
+    <img class="lu-masc" src="assets/livup-mascotte.png" alt="">
+    <div class="lu-ric">
+      <div class="lu-ric-t">Ricompense sbloccate</div>
+      <div class="lu-rew">
+        <div class="rw"><img src="assets/xp.png" alt=""><span>+250 XP</span></div>
+        <div class="rw"><img src="assets/moneta.png" alt=""><span>+100 Crediti</span></div>
+        <div class="rw"><img src="assets/monete.png" alt=""><span>+500 Crediti</span></div>
+      </div>
+    </div>
+    <div class="lu-msg">
+      <div class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.8 5.9 20.3 7.2 14 2.2 9.6l6.8-.8z"/></svg></div>
+      <div><b>Sei sempre più leggendario!</b><p>Continua così e conquista la vetta della classifica!</p></div>
+    </div>
+    <button class="lu-cont" id="luContinua">Continua ›</button>
+  </div>
+</div>
+
 <!-- BOTTOM NAV -->
 <div class="nav">
   <a class="on" href="#"><img class="nav-ico" src="assets/home.png" alt="">Home</a>
@@ -400,6 +456,16 @@
 </div>
 
 <script>
+// pop-up "Livello salito" — per ora fisso all'ingresso; il Continua lo chiude
+(function(){
+  var lu=document.getElementById('levelup');
+  if(lu){
+    document.body.style.overflow='hidden';
+    document.getElementById('luContinua').addEventListener('click',function(){
+      lu.hidden=true; document.body.style.overflow='';
+    });
+  }
+})();
 (function(){
   var hero=document.querySelector('.hero'); if(!hero) return;
   var track=hero.querySelector('.hero-track');
