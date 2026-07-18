@@ -105,38 +105,40 @@
   .news-it .b .ago{margin-top:3px;font-size:9px;color:var(--muto-2);font-weight:700}
 
   /* CLASSIFICA */
-  .drow{display:flex;align-items:center;gap:6px;padding:7px 0;border-top:1px solid var(--bordo)}
+  .drow{display:flex;align-items:center;gap:9px;padding:9px 0;border-top:1px solid var(--bordo)}
   .drow:first-of-type{border-top:none}
-  .drow .pos{width:12px;font-size:12px;font-weight:900;color:var(--muto);flex-shrink:0}
+  .drow .pos{width:15px;font-size:15px;font-weight:900;color:var(--muto);flex-shrink:0}
   .drow.p1 .pos{color:var(--lime)} .drow.p3 .pos{color:var(--rosso)}
-  .drow .av{width:24px;height:24px;border-radius:50%;flex-shrink:0}
-  .drow .nm{flex:1;min-width:0;font-size:9.5px;font-weight:800;line-height:1.1;overflow:hidden;text-overflow:ellipsis}
-  .drow .nm b{font-weight:900;display:block;font-size:8px;color:var(--muto)}
-  .drow .pt{font-size:12px;font-weight:900;text-align:right;flex-shrink:0}
-  .drow .pt span{font-size:7px;color:var(--muto);display:block;font-weight:700}
-  .fullbtn{margin-top:10px;width:100%;display:flex;align-items:center;justify-content:center;gap:4px;background:#0f1420;border:1px solid var(--bordo);border-radius:11px;padding:9px 4px;font-size:9px;font-weight:800;color:#cfd4de;text-transform:uppercase;letter-spacing:.2px;text-decoration:none;text-align:center;line-height:1.1}
+  .drow .av{width:32px;height:32px;border-radius:50%;flex-shrink:0}
+  .drow .nm{flex:1;min-width:0;font-size:13px;font-weight:900;line-height:1.15;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .drow .nm b{font-weight:700;display:block;font-size:10px;color:var(--muto)}
+  .drow .pt{font-size:15px;font-weight:900;text-align:right;flex-shrink:0}
+  .drow .pt span{font-size:8px;color:var(--muto);display:block;font-weight:700}
+  .fullbtn{margin-top:11px;width:100%;display:flex;align-items:center;justify-content:center;gap:5px;background:#0f1420;border:1px solid var(--bordo);border-radius:12px;padding:11px 6px;font-size:11px;font-weight:800;color:#cfd4de;text-transform:uppercase;letter-spacing:.2px;text-decoration:none;text-align:center;line-height:1.1}
 
   /* PRONOSTICI */
-  .pr{padding:8px 0;border-top:1px solid var(--bordo)}
+  .pr{padding:9px 0;border-top:1px solid var(--bordo)}
   .pr:first-of-type{border-top:none;padding-top:0}
-  .pr .lab{font-size:8px;font-weight:900;letter-spacing:.2px;color:var(--muto);text-transform:uppercase}
-  .pr .val{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-top:3px}
-  .pr .val .nm{font-size:11px;font-weight:900;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .pr .lab{font-size:9.5px;font-weight:900;letter-spacing:.3px;color:var(--muto);text-transform:uppercase}
+  .pr .val{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:4px}
+  .pr .val .nm{font-size:14px;font-weight:900;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .pr .avs{display:flex;flex-shrink:0}
-  .pr .avs .a{width:22px;height:22px;border-radius:50%;margin-left:-6px;border:2px solid var(--card)}
+  .pr .avs .a{width:28px;height:28px;border-radius:50%;margin-left:-8px;border:2px solid var(--card)}
   .pr .avs .a:first-child{margin-left:0}
-  .pr .av1{width:24px;height:24px;border-radius:50%;flex-shrink:0}
-  .pr-tot{margin-top:9px;padding-top:9px;border-top:1px solid var(--bordo);display:flex;align-items:center;justify-content:space-between}
-  .pr-tot .l{font-size:9px;font-weight:900;text-transform:uppercase;color:var(--muto)}
-  .pr-tot .r{font-size:16px;font-weight:900;color:var(--viola)}
+  .pr .av1{width:30px;height:30px;border-radius:50%;flex-shrink:0}
+  .pr-tot{margin-top:11px;padding-top:11px;border-top:1px solid var(--bordo);display:flex;align-items:center;justify-content:space-between}
+  .pr-tot .l{font-size:11px;font-weight:900;text-transform:uppercase;color:var(--muto)}
+  .pr-tot .r{font-size:20px;font-weight:900;color:var(--viola)}
 
-  /* QUIZ DEL GP */
-  .quizgp{text-align:center}
-  .quizgp .badge2{display:inline-block;font-size:8px;font-weight:900;color:#fff;background:var(--viola-2);padding:2px 7px;border-radius:7px;letter-spacing:.3px;margin-bottom:9px}
-  .quizgp .ill{width:100%;height:74px;border-radius:12px;margin-bottom:10px}
-  .quizgp h3{font-size:13px;font-weight:900;line-height:1.15}
-  .quizgp p{margin-top:5px;font-size:9.5px;color:var(--muto)}
-  .btn-viola{margin-top:10px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--viola-2);color:#fff;font-weight:900;font-size:10px;letter-spacing:.2px;text-transform:uppercase;padding:11px 4px;border-radius:20px;border:none;text-decoration:none}
+  /* QUIZ DEL GP (tutta larghezza) */
+  .quizgp .badge2{display:inline-block;font-size:9px;font-weight:900;color:#fff;background:var(--viola-2);padding:2px 9px;border-radius:8px;letter-spacing:.4px;margin-bottom:11px}
+  .quiz-flex{display:flex;align-items:center;gap:14px}
+  .quizgp .ill{width:150px;height:104px;border-radius:14px;flex-shrink:0;font-size:9px}
+  .quiz-txt{flex:1;min-width:0}
+  .quizgp h3{font-size:18px;font-weight:900;line-height:1.15}
+  .quizgp p{margin-top:6px;font-size:12.5px;color:var(--muto)}
+  .btn-viola{margin-top:12px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--viola-2);color:#fff;font-weight:900;font-size:13px;letter-spacing:.4px;text-transform:uppercase;padding:13px 26px;border-radius:24px;border:none;text-decoration:none}
+  @media(max-width:380px){.quiz-flex{flex-direction:column;text-align:center}.quizgp .ill{width:100%;height:88px}.btn-viola{width:100%}}
 
   /* LIVE EVENTI */
   .live-badge{font-size:9px;font-weight:900;color:#fff;background:var(--rosso);padding:2px 7px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;letter-spacing:.4px}
@@ -264,33 +266,37 @@
       </div>
     </div>
 
-    <!-- CLASSIFICA + PRONOSTICI + QUIZ (3 colonne) -->
-    <div class="row3">
-      <div class="card">
-        <div class="sec-hd"><div class="sec-t" style="font-size:11px">Classifica</div></div>
+    <!-- CLASSIFICA (tutta larghezza) -->
+    <div class="card solo">
+        <div class="sec-hd"><div class="sec-t">🏁 Classifica piloti</div><a class="vedi" href="#">Vedi tutta ›</a></div>
         <div class="drow p1"><span class="pos">1</span><div class="av ph"></div><div class="nm"><b>Max</b>VERSTAPPEN</div><div class="pt">123<span>PTI</span></div></div>
         <div class="drow"><span class="pos">2</span><div class="av ph"></div><div class="nm"><b>Lando</b>NORRIS</div><div class="pt">105<span>PTI</span></div></div>
         <div class="drow p3"><span class="pos">3</span><div class="av ph"></div><div class="nm"><b>Charles</b>LECLERC</div><div class="pt">87<span>PTI</span></div></div>
         <div class="drow"><span class="pos">4</span><div class="av ph"></div><div class="nm"><b>Lewis</b>HAMILTON</div><div class="pt">65<span>PTI</span></div></div>
         <div class="drow"><span class="pos">5</span><div class="av ph"></div><div class="nm"><b>George</b>RUSSELL</div><div class="pt">58<span>PTI</span></div></div>
         <a class="fullbtn" href="#">Classifica completa ›</a>
-      </div>
+    </div>
 
-      <div class="card">
-        <div class="sec-hd"><div class="sec-t" style="font-size:11px">Pronostici</div></div>
+    <!-- PRONOSTICI (tutta larghezza) -->
+    <div class="card solo">
+        <div class="sec-hd"><div class="sec-t">🎯 I tuoi pronostici</div><a class="vedi" href="#">Modifica ›</a></div>
         <div class="pr"><div class="lab">Vincitore gara</div><div class="val"><span class="nm">Max VERSTAPPEN</span><div class="av1 ph"></div></div></div>
-        <div class="pr"><div class="lab">Podio</div><div class="val"><span class="nm" style="font-size:9px;color:#cfd4de;font-weight:700">Ver, Nor, Lec</span><div class="avs"><span class="a ph"></span><span class="a ph"></span><span class="a ph"></span></div></div></div>
+        <div class="pr"><div class="lab">Podio</div><div class="val"><span class="nm" style="font-size:11px;color:#cfd4de;font-weight:700">Ver, Nor, Lec</span><div class="avs"><span class="a ph"></span><span class="a ph"></span><span class="a ph"></span></div></div></div>
         <div class="pr"><div class="lab">Pole position</div><div class="val"><span class="nm">Lando NORRIS</span><div class="av1 ph"></div></div></div>
         <div class="pr"><div class="lab">Giro veloce</div><div class="val"><span class="nm">Max VERSTAPPEN</span><div class="av1 ph"></div></div></div>
-        <div class="pr-tot"><span class="l">Punti tot.</span><span class="r">250<span style="font-size:9px;color:var(--muto)"> PTI</span> ⭐</span></div>
-      </div>
+        <div class="pr-tot"><span class="l">Punti totali</span><span class="r">250<span style="font-size:10px;color:var(--muto)"> PTI</span> ⭐</span></div>
+    </div>
 
-      <div class="card quizgp">
-        <span class="badge2">NUOVO</span>
-        <div class="ill ph">IMMAGINE<br>QUIZ GP</div>
-        <h3>Quanto conosci il GP di Miami?</h3>
-        <p>Guadagna XP e monete!</p>
-        <a class="btn-viola" href="quiz.html">Gioca ora ›</a>
+    <!-- QUIZ DEL GP (tutta larghezza) -->
+    <div class="card solo quizgp">
+      <span class="badge2">NUOVO</span>
+      <div class="quiz-flex">
+        <div class="ill ph">IMMAGINE QUIZ GP</div>
+        <div class="quiz-txt">
+          <h3>Quanto conosci il GP di Miami?</h3>
+          <p>Sfida te stesso e guadagna XP e monete!</p>
+          <a class="btn-viola" href="quiz.html">Gioca ora ›</a>
+        </div>
       </div>
     </div>
 
