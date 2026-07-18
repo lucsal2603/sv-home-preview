@@ -153,6 +153,47 @@
   .modale .card-p .ico img{max-height:32px}
   .modale .card-p .st{font-size:6.5px}
 
+  /* ── POP-UP INVITA UN AMICO (schermata piena) ── */
+  .invmod{position:fixed;inset:0;z-index:1500;background:var(--sfondo);display:flex;justify-content:center}
+  .inv-inner{width:100%;max-width:430px;height:100%;overflow-y:auto;padding:0 16px 100px}
+  .inv-head{display:flex;align-items:center;justify-content:space-between;padding:16px 0 4px}
+  .inv-head .l{display:flex;align-items:center;gap:12px}
+  .inv-back{width:30px;height:30px;color:#fff;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .inv-back svg{width:26px;height:26px}
+  .inv-head .t{font-weight:900;font-size:21px;letter-spacing:.5px}
+
+  .inv-cerca{margin-top:14px;background:#0f1420;border:1px solid var(--bordo);border-radius:18px;padding:16px}
+  .inv-cerca .k{font-size:13px;font-weight:900;letter-spacing:.4px;color:var(--viola);text-transform:uppercase}
+  .inv-cerca p{margin-top:7px;font-size:13px;color:#cfd4de}
+  .inv-search{margin-top:13px;display:flex;align-items:center;gap:10px;background:#0a0e17;border:1px solid #2a3448;border-radius:14px;padding:12px 14px}
+  .inv-search svg{width:19px;height:19px;color:var(--muto);flex-shrink:0}
+  .inv-search input{flex:1;background:none;border:none;outline:none;color:#fff;font-size:15px;font-family:inherit}
+  .inv-search input::placeholder{color:var(--muto-2)}
+
+  .inv-rt{margin:18px 2px 10px;font-size:13px;font-weight:900;letter-spacing:.5px;color:#8b93a6;text-transform:uppercase}
+  .inv-row{display:flex;align-items:center;gap:13px;background:#0f1420;border:1px solid var(--bordo);border-radius:16px;padding:12px 14px;margin-bottom:11px}
+  .inv-row .ava{width:52px;height:52px;border-radius:50%;overflow:hidden;flex-shrink:0;background:radial-gradient(circle at 50% 32%,#2a3448,#141a27)}
+  .inv-row .ava img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .inv-row .info{flex:1;min-width:0}
+  .inv-row .nome{font-size:17px;font-weight:900}
+  .inv-row .rk{margin-top:3px;display:flex;align-items:center;gap:7px}
+  .inv-row .rk .r{font-size:13px;font-weight:700;color:var(--viola)}
+  .inv-row .lv{min-width:26px;height:26px;padding:0 4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#d7ccff;background:#241a45;border:1.5px solid #5b46a0;clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%)}
+  .inv-btn{flex-shrink:0;background:var(--lime);color:#0b0e13;font-weight:900;font-size:13px;letter-spacing:.4px;text-transform:uppercase;padding:11px 20px;border-radius:22px;border:none;cursor:pointer;transition:background .15s,color .15s}
+  .inv-btn.fatto{background:#1e2a1c;color:#5fae57;cursor:default}
+
+  .inv-oppure{display:flex;align-items:center;gap:12px;margin:22px 4px 14px;color:var(--muto-2);font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+  .inv-oppure::before,.inv-oppure::after{content:"";flex:1;height:1px;background:var(--bordo)}
+  .inv-cod{display:flex;align-items:center;gap:14px;background:#0f1420;border:1px solid var(--bordo);border-radius:18px;padding:15px}
+  .inv-cod .sh{width:52px;height:52px;border-radius:50%;background:#141a27;border:1px solid #2a3448;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--lime)}
+  .inv-cod .sh svg{width:24px;height:24px}
+  .inv-cod .tx{flex:1;min-width:0}
+  .inv-cod .tx h4{font-size:15px;font-weight:900}
+  .inv-cod .tx p{margin-top:2px;font-size:12px;color:var(--muto);line-height:1.3}
+  .inv-cod .code{font-size:14px;font-weight:900;color:var(--lime);letter-spacing:.3px;white-space:nowrap}
+  .inv-cod .copy{width:40px;height:40px;border-radius:11px;background:#1a1330;border:1px solid #5b46a0;color:#c9bcff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+  .inv-cod .copy svg{width:18px;height:18px}
+
   /* NAV */
   .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:84px;background:transparent;display:flex;align-items:flex-start;justify-content:space-around;padding-top:14px;z-index:1000}
   .nav::before{content:"";position:absolute;inset:0;z-index:-1;background:#0e1420;border-radius:28px 28px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.4);
@@ -195,7 +236,7 @@
     <div class="img ph">IMMAGINE<br>SFIDA</div>
     <div class="hero-btns">
       <button class="btn-viola" id="btnComeFunziona">Come funziona <span class="q">?</span></button>
-      <button class="btn-lime">Invita un amico
+      <button class="btn-lime" id="btnInvita">Invita un amico
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M18 8v6M21 11h-6"/></svg>
       </button>
     </div>
@@ -357,6 +398,46 @@
   </div>
 </div>
 
+<!-- POP-UP INVITA UN AMICO -->
+<div class="invmod" id="invmod" hidden>
+  <div class="inv-inner">
+    <div class="inv-head">
+      <div class="l">
+        <button class="inv-back" id="invBack" aria-label="Indietro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="t">INVITA UN AMICO</div>
+      </div>
+      <div class="header-dx">
+        <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="badge">3</span></div>
+        <div class="avatar"><div class="ring"></div><img class="avatar-img" src="assets/avatar1.png" alt=""><span class="lvl">12</span></div>
+      </div>
+    </div>
+
+    <div class="inv-cerca">
+      <div class="k">Cerca un amico</div>
+      <p>Cerca l'username del tuo amico su SV e invitalo a unirsi!</p>
+      <div class="inv-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" placeholder="Cerca username...">
+      </div>
+    </div>
+
+    <div class="inv-rt">Risultati</div>
+    <div id="invLista"></div>
+
+    <div class="inv-oppure"><span>Oppure</span></div>
+
+    <div class="inv-cod">
+      <div class="sh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></div>
+      <div class="tx">
+        <h4>Condividi il tuo codice invito</h4>
+        <p>Invita i tuoi amici condividendo il tuo codice e guadagnate entrambi XP!</p>
+      </div>
+      <span class="code" id="invCode">SV-12AB34CD</span>
+      <button class="copy" id="invCopy" aria-label="Copia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <div class="nav">
   <a href="index.html"><img class="nav-ico" src="assets/home.png" alt="">Home</a>
@@ -377,6 +458,39 @@
   // clic sullo sfondo scuro = chiudi
   m.addEventListener('click', function(e){ if(e.target===m) chiudi(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !m.hidden) chiudi(); });
+
+  // ── POP-UP INVITA UN AMICO ──
+  var inv=document.getElementById('invmod');
+  var AMICI=[
+    {n:"LucaF1",   r:"Rookie SV",   lv:7,  a:"assets/avatar1.png"},
+    {n:"Speedy22", r:"Veterano SV", lv:14, a:"assets/avatar2.png"},
+    {n:"AleF1",    r:"Pilota SV",   lv:20, a:"assets/avatar3.png"},
+    {n:"Fra_05",   r:"Rookie SV",   lv:6,  a:"assets/avatar4.png"},
+    {n:"MaxVer33", r:"Veterano SV", lv:13, a:"assets/avatar5.png"}
+  ];
+  var lista=document.getElementById('invLista');
+  AMICI.forEach(function(x){
+    var row=document.createElement('div'); row.className='inv-row';
+    row.innerHTML='<div class="ava"><img src="'+x.a+'" alt=""></div>'+
+      '<div class="info"><div class="nome">'+x.n+'</div>'+
+      '<div class="rk"><span class="r">'+x.r+'</span><span class="lv">'+x.lv+'</span></div></div>'+
+      '<button class="inv-btn">Invita</button>';
+    var b=row.querySelector('.inv-btn');
+    b.addEventListener('click', function(){ if(b.classList.contains('fatto'))return; b.classList.add('fatto'); b.textContent='Invitato ✓'; });
+    lista.appendChild(row);
+  });
+  function apriInv(){ inv.hidden=false; document.body.style.overflow='hidden'; inv.querySelector('.inv-inner').scrollTop=0; }
+  function chiudiInv(){ inv.hidden=true; document.body.style.overflow=''; }
+  document.getElementById('btnInvita').addEventListener('click', apriInv);
+  document.getElementById('invBack').addEventListener('click', chiudiInv);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !inv.hidden) chiudiInv(); });
+  var copy=document.getElementById('invCopy');
+  copy.addEventListener('click', function(){
+    var code=document.getElementById('invCode').textContent;
+    try{ navigator.clipboard && navigator.clipboard.writeText(code); }catch(_){}
+    var old=copy.innerHTML; copy.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
+    setTimeout(function(){ copy.innerHTML=old; }, 1400);
+  });
 })();
 </script>
 </body>
